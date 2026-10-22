@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+# keep the NeuroAIHub CSVs byte-for-byte identical to the source
+data/registry/*.csv -text
