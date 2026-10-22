@@ -1,0 +1,53 @@
+{
+ "_how_to_edit": "Put a square photo named <id>.jpg (or .png/.webp) in vault/web/team/ and it replaces the placeholder automatically. Edit 'bio' and 'links' here; the About page and README use the same people.",
+ "members": [
+  {
+   "id": "seyed-amir-asef-agah",
+   "name": "Amir Asef Agah",
+   "degrees": "MD",
+   "photo": "team/seyed-amir-asef-agah.svg",
+   "bio": "Amir is a physician on the path to neurosurgery, driven by one question: how can imaging help surgeons make better decisions? As a Postdoctoral Research Fellow at ADIR, Tehran University of Medical Sciences, he works on MRI radiomics, cerebrovascular imaging, and automated segmentation. He also reviews for World Neurosurgery and JIIM.",
+   "links": {
+    "linkedin": "https://www.linkedin.com/in/seyed-amir-asef-agah-552264180/",
+    "github": "https://github.com/AmirAsefAgah",
+    "scholar": "https://scholar.google.com/citations?user=Y0ZYG38AAAAJ&hl=en"
+   }
+  },
+  {
+   "id": "mostafa-neshat-ghalibaf",
+   "name": "Mostafa Neshat",
+   "degrees": "MD",
+   "photo": "team/mostafa-neshat-ghalibaf.svg",
+   "bio": "Mostafa sees a brain scan as both a patient’s story and data waiting to be understood. A physician at ADIR, he turns clinical neuroimaging into data AI models can learn from, and in 2025 he began an MSc in computer science. He’s on his way to radiology, hoping to make it more computational and quantitative.",
+   "links": {
+    "linkedin": "https://www.linkedin.com/in/mostafansh/",
+    "github": "https://github.com/mostafansh",
+    "scholar": "https://scholar.google.com/citations?hl=en&user=xIceI6AAAAAJ"
+   }
+  },
+  {
+   "id": "ahmadreza-sohrabi",
+   "name": "Ahmadreza Sohrabi",
+   "degrees": "MD",
+   "photo": "team/ahmadreza-sohrabi.svg",
+   "bio": "Ahmadreza discovered in medical school how much technology could change healthcare, and he has been building that change ever since. He’s Tech Lead at PetMagix and an AI Research Fellow at ADIR, developing deep learning for medical imaging. He also contributes to open-source medical AI and mentors young developer-researchers, guided by a belief in thoughtful, ethical AI.",
+   "links": {
+    "linkedin": "https://www.linkedin.com/in/arsohrabi/",
+    "github": "https://github.com/ar1so",
+    "scholar": "https://scholar.google.com/citations?user=fLVfLUQAAAAJ&hl=en"
+   }
+  },
+  {
+   "id": "moein-ghasemi",
+   "name": "Moein Ghasemi",
+   "degrees": "MD, PhD",
+   "photo": "team/moein-ghasemi.svg",
+   "bio": "Moein is a physician and researcher at Tehran University of Medical Sciences, curious about what AI can make possible in medicine. He’s drawn to medical imaging and autonomous surgery. As one of the platform’s developers, he loves turning complex ideas into tools people can use. He hopes to become a surgeon bringing AI into the operating room and beyond.",
+   "links": {
+    "linkedin": "https://www.linkedin.com/in/moein-ghasemi-a708a9127/",
+    "github": "https://github.com/MoeinGhasemii",
+    "scholar": "https://scholar.google.com/citations?hl=en&user=MLjOPz4AAAAJ"
+   }
+  }
+ ]
+}

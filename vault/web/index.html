@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeuroRadVault</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/HankenGrotesk-latin.woff2) format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/HankenGrotesk-latin-ext.woff2) format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+/* Intellectual Navy: navy ink on cool paper, one blue for actions; --warn and --bad are the only other hues */
+:root{
+  --bg:#f4f6fa;--surface:#ffffff;--surface2:#e9edf5;--text:#071330;--muted:#2e4c7e;--faint:#6b7a99;--line:#d8dee9;
+  --accent:#1e40af;--accent-2:#1a3693;--accent-soft:#e3e9f7;--on-accent:#ffffff;
+  --ok:var(--text);--warn:#b45309;--bad:#b42318;
+  --shadow:0 1px 2px rgba(7,19,48,.06),0 4px 16px rgba(7,19,48,.06);--radius:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1113;--surface:#171a1e;--surface2:#20242a;--text:#e9ebee;--muted:#a6acb6;--faint:#7a818c;--line:#2a2e35;
+  --accent:#9cb1ea;--accent-2:#bccbf2;--accent-soft:#232a3a;--on-accent:#0f1113;
+  --warn:#f2b25c;--bad:#f28b7a;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{
+  --bg:#0f1113;--surface:#171a1e;--surface2:#20242a;--text:#e9ebee;--muted:#a6acb6;--faint:#7a818c;--line:#2a2e35;
+  --accent:#9cb1ea;--accent-2:#bccbf2;--accent-soft:#232a3a;--on-accent:#0f1113;
+  --warn:#f2b25c;--bad:#f28b7a;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}
+/* the navy band: header + hero. Its own tokens so both themes keep a band that reads as one block */
+:root{--band:#071330;--on-band:#ffffff;--on-band-2:#b9c6e2;--on-band-3:#8a9dcc;--band-rule:#1d2f63;--band-ghost:#15295e;--band-accent:#7b9bf5;
+  --lift:0 12px 32px rgba(7,19,48,.16)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--band:#181b21;--band-accent:#9cb1ea;--on-band-2:#c3c8d1;--on-band-3:#8f96a3;--band-rule:#2b3039;--band-ghost:#262b34;--lift:0 12px 32px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--band:#181b21;--band-accent:#9cb1ea;--on-band-2:#c3c8d1;--on-band-3:#8f96a3;--band-rule:#2b3039;--band-ghost:#262b34;--lift:0 12px 32px rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Hanken Grotesk","Segoe UI Variable","Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:2px}a:hover{text-decoration-color:currentColor}
+a.btn{text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+.hidden{display:none!important}
+.mini{font-size:12px;color:var(--muted)}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+
+/* buttons */
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:7px 12px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:background .12s,border-color .12s}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:var(--surface2)}
+.btn.sm{padding:4px 9px;font-size:12.5px;border-radius:7px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.icon{width:16px;height:16px;flex:none}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;background:var(--band);color:var(--on-band);border-bottom:1px solid var(--band-rule)}
+.top .brand small,.top .mini{color:var(--on-band-2)}
+.top .pill{background:transparent;border-color:var(--band-rule);color:var(--on-band-2)}
+.top .meter{background:var(--band-rule)}
+.top .meter .used{background:var(--on-band-3)}.top .meter .vault{background:var(--band-accent)}
+.top .meter .queue{background:repeating-linear-gradient(135deg,var(--band-accent) 0 2px,transparent 2px 4px)}
+.top .btn{background:transparent;border-color:var(--band-rule);color:var(--on-band)}
+.top .btn.ghost{border-color:transparent;color:var(--on-band-2)}
+.top .pill:hover,.top .btn:hover{border-color:var(--on-band-3)}
+.top .btn.ghost:hover{background:var(--band-rule);color:var(--on-band)}
+.top .badge{background:var(--band-accent);color:var(--band)}
+.band{background:var(--band);color:var(--on-band);overflow:hidden}
+.band .wrap{position:relative;padding-top:56px;padding-bottom:90px}
+.band .ghost{position:absolute;right:-30px;top:-70px;width:440px;height:440px;color:var(--band-ghost);pointer-events:none}
+.band h1{position:relative;font-size:56px;line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:0 0 16px;max-width:18ch;text-wrap:balance}
+.band h1 .of{color:var(--on-band-3)}
+.band p{position:relative;margin:0;color:var(--on-band-2);font-size:18px;line-height:1.5;max-width:54ch}
+.bar{display:flex;align-items:center;gap:14px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.01em}
+.brand img{width:34px;height:34px}
+.brand small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:0}
+.grow{flex:1}
+.pill{display:flex;align-items:center;gap:10px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer}
+.pill:hover{border-color:var(--accent)}
+.meter{width:120px;height:6px;border-radius:3px;background:var(--surface2);overflow:hidden;display:flex}
+.meter i{display:block;height:100%}
+.meter .used{background:var(--faint)}.meter .vault{background:var(--accent)}
+.meter .queue,.key-queue{background:repeating-linear-gradient(135deg,var(--accent) 0 2px,transparent 2px 4px)}
+.key{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.badge{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:700;display:inline-grid;place-items:center}
+@media (max-width:760px){.pill .meter,.brand small,.hide-sm{display:none}}
+@media (max-width:480px){.brand div{display:none}.bar{gap:8px}.pill{padding:6px 10px}}
+.pill span,.btn span{white-space:nowrap}
+
+/* hero + search */
+.hero{padding:0 0 8px}
+.search{position:relative}
+.hero .search{margin-top:-31px}
+.search input{width:100%;font:inherit;font-size:17px;padding:18px 64px 18px 50px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:none;box-shadow:var(--lift);transition:border-color .12s,box-shadow .12s}
+.search input::placeholder{color:var(--faint)}
+.search input:hover{border-color:var(--faint)}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--lift)}
+.search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+.search kbd{position:absolute;right:16px;top:50%;transform:translateY(-50%);font:600 11px ui-monospace,Consolas,monospace;color:var(--muted);background:var(--surface2);border-radius:4px;padding:3px 8px}
+/* filters: one labelled row per kind, plain text toggles */
+.filters{margin:22px 0 0;border-bottom:1px solid var(--line)}
+.frow{display:grid;grid-template-columns:92px 1fr;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.flabel{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:2px;margin-left:-8px}
+.chip{border:0;background:none;border-radius:6px;padding:3px 8px;font-size:13.5px;display:inline-flex;gap:6px;align-items:baseline;transition:background .12s}
+.chip:hover{background:var(--surface2)}
+.chip.on{background:var(--accent);color:var(--on-accent);font-weight:500}
+.chip .n{color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums}
+.chip.on .n{color:inherit;opacity:.65}
+@media (max-width:640px){.band .wrap{padding-top:36px;padding-bottom:76px}.band h1{font-size:36px}.band p{font-size:15.5px}.band .ghost{width:300px;height:300px;right:-100px;top:-50px}.frow{grid-template-columns:1fr;gap:4px}}
+
+/* quick start */
+.quick{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:16px 0 4px;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(120deg,var(--accent-soft),var(--surface));border:1px solid var(--line)}
+.quick b{font-size:15px}
+.quick select{font:inherit;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--text);padding:3px 6px}
+
+/* results */
+.toolbar{display:flex;align-items:center;gap:10px;margin:16px 0 8px;flex-wrap:wrap}
+.toolbar select{font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);padding:5px 8px}
+.list{display:flex;flex-direction:column;gap:8px;padding-bottom:80px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px 14px;transition:border-color .12s,box-shadow .12s}
+.eyebrow{display:flex;flex-wrap:wrap;gap:0 8px;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 5px}
+.eyebrow .access{color:var(--accent);font-weight:700}
+.eyebrow .later{color:var(--faint)}
+.disease{font-size:13.5px;color:var(--muted);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts{display:grid;grid-template-columns:2.2fr 1fr .7fr 1.1fr 1.3fr .9fr;margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--line)}
+.facts div{min-width:0;padding-right:14px}
+.facts dt{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);margin:0 0 1px}
+.facts dd{margin:0;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.na{color:var(--faint)}
+.feats{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.feat{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 7px;border-radius:6px;background:var(--accent-soft);color:var(--text);font-size:12.5px;font-weight:500}
+.feat svg{width:15px;height:15px;flex:none;color:var(--accent)}
+@media (max-width:900px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}}
+.row:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:var(--shadow)}
+/* access ladder: four ticks, all filled = easiest to get (priority 1), one = hardest (priority 4) */
+.access{color:var(--text);font-weight:600}
+.title{font-weight:600;font-size:15.5px;line-height:1.35;letter-spacing:-.005em;cursor:pointer;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.title:hover{color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:3px;font-size:12.5px;color:var(--muted)}
+.meta .t{display:inline-flex;align-items:center;gap:4px}
+.tag{color:var(--muted);font-weight:500}
+.act{display:flex;align-items:center;gap:8px;justify-content:flex-end;min-width:200px}
+.dl{min-width:176px;justify-content:center}
+.prog{min-width:200px}
+.prog .line{height:6px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.prog .line i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.prog .txt{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:3px;gap:8px}
+.done{color:var(--ok);font-weight:600;display:inline-flex;gap:5px;align-items:center}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+@media (max-width:760px){.row{grid-template-columns:1fr;}.act{grid-column:1;justify-content:flex-start;margin-top:10px;min-width:0}}
+
+/* drawers */
+.scrim{position:fixed;inset:0;background:rgba(5,12,18,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity .15s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--surface);z-index:41;transform:translateX(100%);transition:transform .2s ease,visibility .2s;display:flex;flex-direction:column;visibility:hidden}
+.drawer.on{transform:none;visibility:visible;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.drawer header{position:static;background:none;backdrop-filter:none;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.drawer h2{margin:0;font-size:16px}
+.drawer .body{padding:16px 18px;overflow:auto;flex:1}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:13px}
+.kv div:nth-child(odd){color:var(--muted)}
+.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
+.dname{margin:0;font-size:20px;line-height:1.25;letter-spacing:-.015em}
+.drawer .facts{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:10px}
+.dsec{border-top:1px solid var(--line);padding:14px 0 6px}
+.dsec h4{margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;background:var(--surface)}
+.field{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.field:last-child{border-bottom:0}
+.field select{font:inherit;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--text);padding:4px 6px}
+.qrow{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.qrow:last-child{border-bottom:0}
+.qrow .n{color:var(--faint);font-weight:700;text-align:center}
+.err{color:var(--bad);font-size:12px}
+.warn{color:var(--warn);font-weight:600}
+
+/* setup */
+.setup{max-width:760px;margin:40px auto;padding:0 20px}
+.setup h1{font-size:30px;letter-spacing:-.02em;margin:10px 0 6px}
+.drives{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:16px 0}
+.drive{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface);cursor:pointer;text-align:left}
+.drive:hover{border-color:var(--accent)}
+.drive.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.drive b{display:block;font-size:15px}
+.drive .meter{width:100%;margin:8px 0 4px}
+.pathin{display:flex;gap:8px}
+.pathin input{flex:1;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+
+/* toast */
+.toasts{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:var(--text);color:var(--bg);padding:9px 14px;border-radius:10px;font-size:13px;box-shadow:var(--shadow);animation:pop .18s ease}
+@keyframes pop{from{transform:translateY(8px);opacity:0}}
+.spin{width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sp .8s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.only-sm{display:none}
+@media (max-width:760px){.only-sm{display:inline}}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.team{grid-template-columns:1fr}}
+.member{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;background:var(--surface)}
+.member img{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px;background:var(--surface2)}
+.member b{display:block;font-size:14.5px}
+.member .deg{font-size:12px;color:var(--accent-2);font-weight:600}
+.member p{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.member p.placeholder{font-style:italic;color:var(--faint)}
+.member{display:flex;flex-direction:column}
+.member p{text-align:left;flex:1}
+.links{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.links a{display:inline-flex;border-radius:5px;transition:transform .12s,opacity .12s;opacity:.9}
+.links a:hover{transform:translateY(-1px);opacity:1}
+.links img{width:22px;height:22px;display:block}
+.mission{font-size:15px;margin:0 0 6px}
+footer{color:var(--faint);font-size:12px;padding:10px 0 40px}
+</style>
+</head>
+<body>
+
+<!-- ============ first-run setup ============ -->
+<section id="setup" class="setup hidden">
+  <img src="/favicon.svg" alt="" width="48" height="48">
+  <h1>Where should your datasets live?</h1>
+  <p class="mini" style="font-size:14px">Pick a drive with plenty of free space (an external SSD is ideal). NeuroRadVault creates a tidy folder there: one folder per disease domain, sorted by priority, with a shortcut to every dataset's official page. You can move to another drive later.</p>
+  <div id="drives" class="drives"></div>
+  <div class="pathin"><input id="setupPath" aria-label="Vault folder"><button class="btn primary" id="btnCreate">Create my vault</button></div>
+  <p id="setupMsg" class="mini"></p>
+  <p class="mini">Tip: a folder that already has a vault in it is simply reopened, with your downloads intact.</p>
+</section>
+
+<!-- ============ app ============ -->
+<div id="app" class="hidden">
+<header class="top"><div class="wrap bar">
+  <div class="brand"><img src="/favicon.svg" alt=""><div>NeuroRadVault<small>One click away from your next dataset</small></div></div>
+  <div class="grow"></div>
+  <div class="pill" id="pillStorage" title="Storage">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 14h18M7 17h.01"/></svg>
+    <div class="meter"><i class="used" id="mUsed"></i><i class="vault" id="mVault"></i><i class="queue" id="mQueue"></i></div>
+    <span class="mini" id="freeTxt"></span>
+  </div>
+  <button class="btn" id="btnDownloads"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg><span class="hide-sm">Downloads</span> <span id="dlBadge"></span><span class="mini" id="dlSpeed"></span></button>
+  <button class="btn ghost" id="btnAbout" title="About us"><span class="hide-sm">About</span><svg class="icon only-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button>
+  <button class="btn ghost" id="btnSettings" title="Settings" aria-label="Settings"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+</div></header>
+
+<section class="band"><div class="wrap">
+  <svg class="ghost" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="gbc"><path d="M47 95.5L49.0 95.5Q36.3 97.3 26.2 89.4Q14.4 84.6 9.6 72.8Q1.7 62.7 3.5 50.0Q1.7 37.3 9.6 27.3Q14.4 15.4 26.3 10.6Q36.3 2.7 49.0 4.5L47 95Z"/></clipPath></defs><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"><path d="M47 95.5L49.0 95.5Q36.3 97.3 26.2 89.4Q14.4 84.6 9.6 72.8Q1.7 62.7 3.5 50.0Q1.7 37.3 9.6 27.3Q14.4 15.4 26.3 10.6Q36.3 2.7 49.0 4.5L47 95Z"/><path d="M27 0V18.5a3.8 3.8 0 1 0 0 7V74.5a3.8 3.8 0 1 1 0 7V100 M0 36H11.5a3.8 3.8 0 1 1 7 0H34.5a3.8 3.8 0 1 0 7 0H47 M0 64H12.5a3.8 3.8 0 1 0 7 0H34.5a3.8 3.8 0 1 1 7 0H47" clip-path="url(#gbc)" stroke-width="1.2"/><path d="M53 4A46 46 0 0 1 53 96Z"/><circle cx="74" cy="50" r="11"/><path d="M74.00 54.50L74.00 66.00 M70.10 52.25L60.14 58.00 M70.10 47.75L60.14 42.00 M74.00 45.50L74.00 34.00 M77.90 47.75L87.86 42.00 M77.90 52.25L87.86 58.00"/><circle cx="74" cy="50" r="3.2"/><rect x="92" y="20" width="6.5" height="14" rx="3.25" stroke-width="1.2"/><rect x="92" y="66" width="6.5" height="14" rx="3.25" stroke-width="1.2"/></g></svg>
+  <h1 id="heroTitle">Find a neuroradiology dataset</h1>
+  <p id="heroSub">Search the whole catalogue by disease, modality or host. Open datasets download with one click, straight into the right folder.</p>
+</div></section>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Try glioma, stroke CT, lumbar spine, multiple sclerosis, OpenNeuro…" autocomplete="off" aria-label="Search datasets">
+      <kbd>/</kbd>
+    </div>
+    <div class="filters">
+      <div class="frow"><span class="flabel">Domain</span><div class="opts" id="domainChips"></div></div>
+      <div class="frow"><span class="flabel">Modality</span><div class="opts" id="modChips"></div></div>
+      <div class="frow"><span class="flabel">Access</span><div class="opts" id="accChips"></div></div>
+      <div class="frow"><span class="flabel">Show</span><div class="opts" id="filterChips"></div></div>
+    </div>
+  </div>
+
+  <div class="quick" id="quick">
+    <div><b>Essentials pack</b><div class="mini" id="quickTxt"></div></div>
+    <div class="grow"></div>
+    <span class="mini">up to <select id="quickCap"><option value="10">10 GB</option><option value="50">50 GB</option><option value="100" selected>100 GB</option><option value="250">250 GB</option></select> each</span>
+    <button class="btn primary" id="btnQuick">Download pack</button>
+  </div>
+
+  <div class="toolbar">
+    <span class="mini" id="countTxt"></span>
+    <div class="grow"></div>
+    <label class="mini">Sort <select id="sort">
+      <option value="best">Best first</option><option value="size">Smallest first</option><option value="sizeD">Largest first</option>
+      <option value="subjects">Most subjects</option><option value="year">Newest</option><option value="name">Name</option></select></label>
+  </div>
+  <div class="list" id="list"></div>
+  <div id="more" class="empty hidden">Loading more…</div>
+  <footer>Catalogue updated monthly · sizes from each host's API · <a href="#" data-do="about">About us</a> <span id="srcTxt"></span></footer>
+</main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"><header><h2 id="dTitle"></h2><button class="btn ghost" id="dClose" aria-label="Close">✕</button></header><div class="body" id="dBody"></div></aside>
+<div class="toasts" id="toasts"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const APPH = {"Content-Type":"application/json","X-App":"NeuroRadVault"};
+const PRI = {1:"Open · masks · one-click",2:"Open · one-click",3:"Manual step needed",4:"Restricted access"};
+const PRI_LONG = {1:"Open access, has segmentation masks, one-click download",2:"Open access, one-click download (no masks)",3:"Open, but needs a manual step first (registration, Kaggle, Synapse, a challenge site or TCIA Aspera)",4:"Restricted: needs a data use agreement or an application"};
+const ACC = {1:"One-click, with masks",2:"One-click",3:"Manual step",4:"Restricted"};
+const DOM = ["Neoplasm","Cerebrovascular","Neurodegenerative","Spinal","Other","Neurodevelopmental","Psychiatric"];
+const DOML = {Neoplasm:"Neoplasm",Cerebrovascular:"Cerebrovascular",Neurodegenerative:"Neurodegenerative",Spinal:"Spine",Other:"Other / Normative",Neurodevelopmental:"Neurodevelopmental",Psychiatric:"Psychiatric"};
+const HOSTS = {openneuro:"OpenNeuro",tcia:"TCIA",zenodo:"Zenodo",figshare:"Figshare",mendeley:"Mendeley Data",huggingface:"Hugging Face",osf:"OSF"};
+const MODS = ["MRI","CT","PET","fMRI","DTI","X-ray","Ultrasound"];
+const SYN = [["glioma","glioblastoma","gbm","astrocytoma","oligodendroglioma","glial"],["tumor","tumour","neoplasm","cancer","glioma","metasta","meningioma","schwannoma"],
+  ["stroke","ischemic","ischaemic","infarct","isles","penumbra"],["hemorrhage","haemorrhage","bleed","hematoma","haematoma"],["ms","multiple sclerosis"],
+  ["alzheimer","dementia","cognitive impairment"],["spine","spinal","vertebra","lumbar","cervical","intervertebral"],["metastasis","metastases","metastatic"],
+  ["aneurysm","aneurysmal"],["epilepsy","seizure","cortical dysplasia"],["autism","asd"],["schizophrenia","psychosis"],["tbi","traumatic brain"],
+  ["tumour","tumor","neoplasm"],["haemorrhage","hemorrhage","bleed"],["ischaemic","ischemic"],["gbm","glioblastoma"]];
+// each search word also matches its synonyms
+function terms(w){ const out = new Set([w]); SYN.forEach(g=>{ if(g[0]===w) g.forEach(x=>out.add(x)); }); return [...out]; }
+const hit = (hay, alts) => alts.some(a=>hay.includes(a));
+const ACTIVE = ["queued","resolving","downloading","verifying"];
+let CAT = null, DS = [], ST = null, F = {dom:new Set(), mod:new Set(), pri:new Set(), oneclick:false, masks:false, local:""}, shown = 0, view = [], drawerKind = null, drawerId = null, builtSeen = null;
+
+const gb = b => b==null? "" : b<1e9? (b/1e6).toFixed(b<1e7?1:0)+" MB" : b<1e12? (b/1e9).toFixed(b<1e10?1:0)+" GB" : (b/1e12).toFixed(2)+" TB";
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dur = s => s==null? "" : s<90? Math.round(s)+" s" : s<5400? Math.round(s/60)+" min" : s<172800? (s/3600).toFixed(1)+" h" : (s/86400).toFixed(1)+" days";
+async function get(p){ return (await fetch(p)).json(); }
+async function post(p,b){ const r = await fetch(p,{method:"POST",headers:APPH,body:JSON.stringify(b||{})}); const j = await r.json().catch(()=>({})); if(!r.ok) toast(j.error||"Something went wrong"); return j; }
+function toast(msg, ms){ const t=document.createElement("div"); t.className="toast"; t.textContent=msg; $("#toasts").appendChild(t); setTimeout(()=>t.remove(),ms||3200); }
+const later = () => (ST && ST.settings && ST.settings.later_domains) || [];
+const isLater = d => later().includes(d.category);
+const J = id => ST && ST.dl && ST.dl.jobs[id];
+
+function mods(d){ const m=(d.modality||"").toLowerCase(), o=[];
+  if(/\bmri?\b|mr |t1|t2|flair|dwi|swi|mra|magnetic/.test(m)) o.push("MRI");
+  if(/\bct\b|cta|ctp|computed tomography/.test(m)) o.push("CT");
+  if(/pet|spect/.test(m)) o.push("PET");
+  if(/fmri|bold|resting/.test(m)) o.push("fMRI");
+  if(/dti|dmri|diffusion|dwi/.test(m)) o.push("DTI");
+  if(/x-?ray|radiograph/.test(m)) o.push("X-ray");
+  if(/ultrasound|\bus\b/.test(m)) o.push("Ultrasound");
+  return o; }
+function subj(d){ const m=String(d.subjects).replace(/,/g,"").match(/\d+/); return m? +m[0] : 0; }
+function status(d){
+  const j = J(d.id), l = ST.local[d.id];
+  if(j && ACTIVE.includes(j.status)) return {k:"active", j};
+  if(j && j.status==="paused") return {k:"paused", j};
+  if(j && j.status==="error") return {k:"error", j};
+  if(l && l.status==="done") return {k:"done"};
+  if(l && l.status && l.status!=="done") return {k:"partial"};
+  return {k:"none"};
+}
+
+/* ---------------- setup ---------------- */
+function showSetup(s){
+  $("#app").classList.add("hidden"); $("#setup").classList.remove("hidden");
+  const drives = s.drives.slice().sort((a,b)=>b.free-a.free);
+  const pick = d => { document.querySelectorAll(".drive").forEach(x=>x.classList.toggle("on", x.dataset.p===d.path));
+    const sep = d.path.includes("\\")||/^[A-Z]:/.test(d.path) ? "\\" : "/";
+    $("#setupPath").value = d.path.replace(/[\\/]$/,"") + sep + "NeuroRadVault"; };
+  $("#drives").innerHTML = drives.map(d=>`<button class="drive" data-p="${esc(d.path)}"><b>${esc(d.path)}</b><span class="mini">${esc(d.label)}</span>
+    <div class="meter"><i class="used" style="width:${((d.total-d.free)/d.total*100).toFixed(1)}%"></i></div>
+    <span class="mini"><b style="display:inline;font-size:13px;color:var(--text)">${gb(d.free)}</b> free of ${gb(d.total)}</span></button>`).join("");
+  document.querySelectorAll(".drive").forEach((el,i)=>el.onclick=()=>pick(drives[i]));
+  if(drives.length && !$("#setupPath").value) pick(drives[0]);
+}
+$("#btnCreate").onclick = async ()=>{
+  $("#btnCreate").disabled = true; $("#setupMsg").innerHTML = '<span class="spin"></span> Creating folders…';
+  const r = await post("/api/setup",{path:$("#setupPath").value});
+  $("#btnCreate").disabled = false;
+  if(r.ok){ $("#setupMsg").textContent = ""; await boot(); toast("Your vault is ready at "+r.root); } else $("#setupMsg").textContent = r.error||"";
+};
+
+/* ---------------- catalogue ---------------- */
+async function loadCatalog(){
+  CAT = await get("/api/catalog"); DS = CAT.datasets; builtSeen = CAT.built;
+  DS.forEach(d=>{ d._m = mods(d); d._s = subj(d); d._y = +d.year||0; d._h = d.downloader? HOSTS[d.downloader.type] : (()=>{ try{ return new URL(d.link).hostname.replace(/^www\./,""); }catch(e){ return ""; } })();
+    d._q = [d.name,d.short,d.disease,d.modality,d.fields.institution,d.fields.country,d.format,d._h,d.category,DOML[d.category],d.year].join(" ").toLowerCase(); });
+  drawChips(); drawQuick(); apply();
+}
+function drawChips(){
+  $("#domainChips").innerHTML = DOM.map(c=>`<button class="chip ${F.dom.has(c)?"on":""}" data-dom="${c}">${DOML[c]} <span class="n">${DS.filter(d=>d.category===c).length}</span></button>`).join("");
+  $("#modChips").innerHTML = MODS.map(m=>`<button class="chip ${F.mod.has(m)?"on":""}" data-mod="${m}">${m}</button>`).join("");
+  $("#accChips").innerHTML = [1,2,3,4].map(p=>`<button class="chip ${F.pri.has(p)?"on":""}" data-pri="${p}" title="${esc(PRI_LONG[p])}">${ACC[p]} <span class="n">${DS.filter(d=>d.priority===p).length}</span></button>`).join("");
+  $("#filterChips").innerHTML = `<button class="chip ${F.masks?"on":""}" data-f="masks">With masks</button>
+    <button class="chip ${F.local==="mine"?"on":""}" data-f="mine">On my drive</button>`;
+}
+function quickList(){ const cap = +$("#quickCap").value*1e9;
+  return DS.filter(d=>d.auto && d.priority===1 && !isLater(d) && (d.size_bytes||0)<=cap && d.size_bytes && ["none","partial"].includes(status(d).k)); }
+function drawQuick(){
+  const l = quickList(), b = l.reduce((a,d)=>a+(d.size_bytes||0),0), free = ST.storage? ST.storage.free_after_queue : null;
+  $("#quickTxt").innerHTML = l.length? `${l.length} open datasets with segmentation masks you don't have yet · <b>${gb(b)}</b>` + (free!=null && l.reduce((a,d)=>a+needs(d),0)>free-20e9? ' · <span class="warn">more than your free space</span>':'') : "You already have every open dataset with masks at this size. Nice.";
+  $("#btnQuick").disabled = !l.length;
+}
+
+let qTimer;
+function apply(){
+  const words = $("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean).map(terms);
+  view = DS.filter(d => (!F.dom.size || F.dom.has(d.category)) && (!F.pri.size || F.pri.has(d.priority)) && (!F.oneclick || d.auto) && (!F.masks || d.masks)
+    && (!F.mod.size || [...F.mod].every(m=>d._m.includes(m))) && words.every(w=>hit(d._q, w))
+    && (F.local!=="mine" || status(d).k!=="none"));
+  const s = $("#sort").value;
+  const rel = d => words.length? -words.filter(w=>hit((d.name+" "+d.short+" "+d.disease).toLowerCase(), w)).length : 0;
+  const key = {best:d=>[rel(d), isLater(d)?1:0, d.priority, -(d.masks?1:0), d.auto&&d.size_bytes? Math.log10(d.size_bytes):99],
+    size:d=>[d.size_bytes??1e15], sizeD:d=>[-(d.size_bytes??-1)], subjects:d=>[-d._s], year:d=>[-d._y], name:d=>[d.name.toLowerCase()]}[s];
+  view = view.map(d=>[key(d),d]).sort((a,b)=>{ for(let i=0;i<a[0].length;i++){ if(a[0][i]<b[0][i]) return -1; if(a[0][i]>b[0][i]) return 1; } return a[1].name.localeCompare(b[1].name); }).map(x=>x[1]);
+  const oc = view.filter(d=>d.auto), b = oc.reduce((a,d)=>a+(d.size_bytes||0),0);
+  $("#countTxt").textContent = `${view.length} dataset${view.length===1?"":"s"} · ${oc.length} one-click (${gb(b)})`;
+  shown = 0; $("#list").innerHTML = ""; more();
+}
+function more(){
+  const next = view.slice(shown, shown+50); shown += next.length;
+  $("#list").insertAdjacentHTML("beforeend", next.map(rowHtml).join("") || (shown? "" : `<div class="empty">No dataset matches. Try fewer words or clear a filter.</div>`));
+  $("#more").classList.toggle("hidden", shown>=view.length);
+}
+new IntersectionObserver(e=>{ if(e[0].isIntersecting && shown<view.length) more(); }, {rootMargin:"600px"}).observe($("#more"));
+
+// "Not specified" counts as empty, "Yes (...)" as yes
+const NS = v => v==null || /^\s*(not specified|not reported|n\/?a|none|unknown|-|—)?\s*$/i.test(String(v));
+const yes = v => /^\s*yes/i.test(String(v||""));
+const clip = (s, n) => { s = String(s||""); return s.length>n? s.slice(0,n-1).trimEnd()+"…" : s; };
+const factList = d => [["Modality", d.modality], ["Subjects", d._s>0? d._s.toLocaleString() : ""], ["Year", d.year],
+  ["Format", d.format], ["Source", d._h], ["Size", d.size_bytes? gb(d.size_bytes) : ""]];
+// extras beyond the images, each with its own icon
+const FEAT_ICON = {
+  "Segmentation masks": '<rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 15.5c0-4 2.5-7 7.5-7.5 0 4.5-3 7.5-7.5 7.5z" fill="currentColor" stroke="none"/>',
+  "Healthy controls": '<circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c.5-3.5 2.7-5.5 5.5-5.5s5 2 5.5 5.5"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 13.5c2.3.3 3.7 2.2 4 5"/>',
+  "Clinical data": '<rect x="5" y="4.5" width="14" height="16" rx="2"/><path d="M9 4.5V3h6v1.5M8.5 10h7M8.5 13.5h7M8.5 17h4"/>',
+  "Histopathology": '<circle cx="9" cy="9.5" r="4.5"/><circle cx="16" cy="15" r="3.5"/><circle cx="8" cy="17.5" r="2"/><circle cx="9" cy="9.5" r="1.2" fill="currentColor" stroke="none"/>',
+};
+const featList = d => [["Segmentation masks", d.masks], ["Healthy controls", yes(d.fields.healthy_control)],
+  ["Clinical data", yes(d.fields.clinical_data)], ["Histopathology", yes(d.fields.histopathology)]].filter(x=>x[1]).map(x=>x[0]);
+const featsHtml = d => { const fs = featList(d); return fs.length? `<div class="feats">${fs.map(x=>`<span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${FEAT_ICON[x]}</svg>${x}</span>`).join("")}</div>` : ""; };
+function factsHtml(d){
+  return `<dl class="facts">${factList(d).map(([k,v])=>`<div><dt>${k}</dt><dd title="${esc(NS(v)? "" : v)}">${NS(v)? '<span class="na">—</span>' : esc(clip(v,48))}</dd></div>`).join("")}</dl>`;
+}
+function rowHtml(d){
+  return `<div class="row" data-row="${d.id}">
+    <div><div class="eyebrow">${access(d.priority)}<span>${esc(DOML[d.category])}</span>${isLater(d)?'<span class="later">Later</span>':''}</div>
+      <div class="title" data-open="${d.id}">${esc(d.name)}</div>
+      ${NS(d.disease)? "" : `<div class="disease" title="${esc(d.disease)}">${esc(d.disease)}</div>`}
+      ${factsHtml(d)}
+      ${featsHtml(d)}</div>
+    <div class="act" data-act-for="${d.id}">${actHtml(d)}</div></div>`;
+}
+function access(p){
+  return `<span class="access" title="${esc(PRI_LONG[p])}">${PRI[p]}</span>`;
+}
+function actHtml(d){
+  const s = status(d), page = d.link? `<a class="btn ghost sm" href="${esc(d.link)}" target="_blank" rel="noopener" title="Official page">↗</a>` : "";
+  if(s.k==="active"||s.k==="paused"){ const j=s.j, pct = j.total_bytes? Math.min(100,j.done_bytes/j.total_bytes*100):0;
+    const lbl = j.note&&j.note.startsWith("waiting")? "Waiting for network…" : {queued:"Queued",resolving:"Preparing…",paused:"Paused",verifying:"Verifying…"}[j.status] || pct.toFixed(0)+"% · "+gb(j.speed)+"/s";
+    return `<div class="prog"><div class="txt"><span data-lbl>${lbl}</span><span data-sz>${gb(j.done_bytes)} / ${gb(j.total_bytes)}</span></div><div class="line"><i data-bar style="width:${pct}%"></i></div></div>
+      ${s.k==="active"? `<button class="btn sm" data-do="pause" data-id="${d.id}" title="Pause">❚❚</button>` : `<button class="btn sm primary" data-do="resume" data-id="${d.id}" title="Resume">▶</button>`}`; }
+  if(s.k==="done") return `<span class="done">✓ On your drive</span><button class="btn sm" data-do="open" data-id="${d.id}">Open folder</button>`;
+  if(d.auto){ const label = s.k==="error"||s.k==="partial"? "Resume" : "Download";
+    return `<button class="btn primary dl" data-do="dl" data-id="${d.id}"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>${label}${d.size_bytes? " · "+gb(d.size_bytes):""}</button>${page}`; }
+  return d.link? `<a class="btn dl" href="${esc(d.link)}" target="_blank" rel="noopener">${d.priority===4?"Request access":"Get it on the website"} ↗</a>` : `<span class="mini">No link in the registry</span>`;
+}
+function updateActs(){
+  document.querySelectorAll("[data-act-for]").forEach(el=>{
+    const d = CAT_BY[el.dataset.actFor]; if(!d) return; const s = status(d), key = s.k+(s.j?s.j.status:"")+(s.j&&s.j.note&&s.j.note.startsWith("waiting")?"w":"");
+    if(el.dataset.key!==key){ el.dataset.key = key; el.innerHTML = actHtml(d); return; }
+    if(s.j && el.querySelector("[data-bar]")){ const j=s.j, pct = j.total_bytes? Math.min(100,j.done_bytes/j.total_bytes*100):0;
+      el.querySelector("[data-bar]").style.width = pct+"%"; el.querySelector("[data-sz]").textContent = `${gb(j.done_bytes)} / ${gb(j.total_bytes)}`;
+      if(j.status==="downloading" && !(j.note||"").startsWith("waiting")) el.querySelector("[data-lbl]").textContent = pct.toFixed(0)+"% · "+gb(j.speed)+"/s"; }
+  });
+}
+let CAT_BY = {};
+
+/* ---------------- downloading (one click) ---------------- */
+// disk space a dataset still needs (queued ones are already counted)
+const needs = d => (ST.dl.order||[]).includes(d.id)? 0 : Math.max(0,(d.size_bytes||0)-((ST.local[d.id]||{}).done_bytes||0));
+async function download(ids){
+  const list = ids.map(i=>CAT_BY[i]).filter(d=>d && d.auto && !["active","done"].includes(status(d).k));
+  if(!list.length) return;
+  const b = list.reduce((a,d)=>a+(d.size_bytes||0),0), extra = list.reduce((a,d)=>a+needs(d),0), free = ST.storage.free_after_queue;
+  if(extra > free - 20e9){ toast(`Not enough space: needs ${gb(extra)}, ${gb(Math.max(0,free))} free after your queue.`); return; }
+  if(list.length>1 || b>50e9){
+    if(!confirm(`Download ${list.length} dataset${list.length>1?"s":""} (${gb(b)})?\n\nAt your recent speed that is roughly ${dur(b/Math.max(ST.dl.total_speed||1.2e6,1e5))}. Downloads continue by themselves after any interruption.`)) return;
+  }
+  const r = await post("/api/download",{ids:list.map(d=>d.id)}), q = r.queued;
+  if(q) toast(!q.length? (list.length===1? `${list[0].short} was not queued: it is already in your downloads or has no one-click download` : "Nothing was queued: these are already in your downloads")
+    : (q.length===1? `Downloading ${CAT_BY[q[0]].short}` : `${q.length} datasets added to your downloads`) + (q.length<list.length? ` (${list.length-q.length} not queued: already in your downloads)` : ""));
+  poll();
+}
+
+/* ---------------- drawers ---------------- */
+function openDrawer(kind, id){ drawerKind = kind; drawerId = id; $("#drawer").classList.add("on"); $("#scrim").classList.add("on"); $("#drawer").setAttribute("aria-hidden","false"); renderDrawer(true); }
+function closeDrawer(){ drawerKind = null; $("#drawer").classList.remove("on"); $("#scrim").classList.remove("on"); $("#drawer").setAttribute("aria-hidden","true"); }
+function renderDrawer(full){
+  if(drawerKind==="ds") return full && renderDetail();
+  if(drawerKind==="dl") return renderDownloads(full);
+  if(drawerKind==="set") return full && renderSettings();
+  if(drawerKind==="sto") return renderStorage();
+  if(drawerKind==="about") return full && renderAbout();
+}
+function renderDetail(){
+  const d = CAT_BY[drawerId], f = d.fields;
+  $("#dTitle").textContent = d.short;
+  const val = v => { if(NS(v)) return '<span class="na">Not specified</span>';
+    const s = String(v).trim(), doi = s.match(/^(10\.\d{4,9}\/\S+)/);
+    if(/^https?:/.test(s)) return `<a href="${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a>`;
+    if(doi) return `<a href="https://doi.org/${esc(doi[1])}" target="_blank" rel="noopener">${esc(s)}</a>`;
+    return esc(s); };
+  const SECTIONS = [["Imaging", [["Modality","modality"],["Resolution","resolution"],["Slices / scans","slice_scan_no"],["Format","format"],["Acquisition","acquisition_protocol"],["Preprocessing","preprocessing"]]],
+    ["Cohort", [["Disease","disease"],["Subjects","subject_no"],["Age range","age_range"],["Healthy controls","healthy_control"]]],
+    ["Labels and clinical data", [["Segmentation","segmentation_mask"],["Staging","staging_information"],["Clinical data","clinical_data"],["Histopathology","histopathology"],["Lab data","lab_data"]]],
+    ["Source", [["Institution","institution"],["Country","country"],["Year","year"],["Access","access_type"],["DOI","doi"],["Website","url"]]]];
+  const rows = SECTIONS.map(([h, ks])=>`<section class="dsec"><h4>${h}</h4><dl class="kv">${ks.map(([l,k])=>`<dt>${l}</dt><dd>${val(f[k])}</dd>`).join("")}</dl></section>`).join("");
+  $("#dBody").innerHTML = `<div class="eyebrow">${access(d.priority)}<span>${esc(DOML[d.category])}</span></div>
+    <h3 class="dname">${esc(d.name)}</h3>
+    ${NS(d.disease)? "" : `<p class="disease" style="white-space:normal">${esc(d.disease)}</p>`}
+    ${factsHtml(d)}
+    ${featsHtml(d)}
+    <p class="mini" style="margin:14px 0 10px">${esc(PRI_LONG[d.priority])}</p>
+    <div class="box"><div class="act" data-act-for="${d.id}" style="justify-content:flex-start">${actHtml(d)}</div>
+      <p class="mini" style="margin:10px 0 0">${d.auto? `From <b>${esc(HOSTS[d.downloader.type])}</b>${d.size_bytes? " · "+gb(d.size_bytes):""}${d.file_count? " · "+d.file_count.toLocaleString()+" files":""}${d.size_note? " · "+esc(d.size_note):""}` : esc(d.auto_error? "No automatic download: "+d.auto_error : "This one needs a manual step on the website.")}</p>
+      ${d.downloader&&d.downloader.type==="tcia"? '<p class="mini">One-click gets the DICOM images from TCIA. NIfTI versions and segmentation files are often a separate download on the collection page.</p>':""}
+      ${status(d).k==="done"? `<p style="margin:8px 0 0"><button class="btn sm" data-do="verify" data-id="${d.id}">Verify & repair</button> <span class="mini">re-checks every file against the host</span></p>`:""}
+      <p class="mini" style="margin:8px 0 0">Folder in your vault: <span class="mono">${esc([ST.folders?ST.folders[d.category]:d.category, {1:"P1_open_with_masks",2:"P2_open_no_masks",3:"P3_manual_download",4:"P4_restricted_access"}[d.priority], d.folder].join(" › "))}</span></p></div>
+    ${rows}`;
+}
+function renderDownloads(full){
+  const dl = ST.dl, jobs = dl.jobs, order = dl.order.filter(i=>CAT_BY[i]);
+  const done = Object.keys(jobs).filter(i=>!order.includes(i) && jobs[i].status==="done" && CAT_BY[i]).sort((a,b)=>(jobs[b].finished||0)-(jobs[a].finished||0)).slice(0,15);
+  $("#dTitle").textContent = "Downloads";
+  const sig = order.map(i=>i+jobs[i].status+(jobs[i].error?1:0)).join()+"|"+done.join()+"|"+JSON.stringify(ST.settings);
+  if(full || $("#dBody").dataset.sig!==sig){
+    $("#dBody").dataset.sig = sig;
+    const s = ST.settings;
+    $("#dBody").innerHTML = `<div class="box"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <b id="dlSum" style="flex:1"></b><button class="btn sm" data-do="pauseall">Pause all</button><button class="btn sm primary" data-do="resumeall">Resume all</button></div>
+        <p class="mini" style="margin:6px 0 0">Interrupted downloads continue where they stopped: big files download in parts whose progress is saved every 2 s, lost connections are retried until they work again, and every file is checked against the host's checksum.</p></div>
+      <div class="box">${order.length? order.map((i,n)=>qHtml(i,n+1)).join("") : '<p class="mini" style="margin:0">Nothing in the queue. Click Download on any dataset.</p>'}</div>
+      ${done.length? `<div class="box"><b>Finished</b>${done.map(i=>qHtml(i,0)).join("")}</div>`:""}
+      <div class="box"><b>Download settings</b>
+        <div class="field"><span>Speed limit <span class="mini">(keeps the rest of your internet usable)</span></span><select data-set="speed_limit_mbps">${[0,0.5,1,2,5,10,25].map(v=>`<option value="${v}" ${+s.speed_limit_mbps===v?"selected":""}>${v? v+" MB/s":"Unlimited"}</option>`).join("")}</select></div>
+        <div class="field"><span>Datasets at the same time</span><select data-set="max_parallel">${[1,2,3].map(v=>`<option ${+s.max_parallel===v?"selected":""}>${v}</option>`).join("")}</select></div>
+        <div class="field"><span>Parts per large file</span><select data-set="segments">${[1,2,4,8].map(v=>`<option ${+s.segments===v?"selected":""}>${v}</option>`).join("")}</select></div>
+        <div class="field"><span>Keep the computer awake while downloading</span><input type="checkbox" data-set="keep_awake" ${s.keep_awake!==false?"checked":""}></div>
+        <div class="field"><span>Continue the queue when the app starts</span><input type="checkbox" data-set="auto_resume" ${s.auto_resume!==false?"checked":""}></div></div>`;
+  }
+  const sp = dl.total_speed||0, rem = dl.left_bytes ?? dl.remaining_bytes ?? 0;   // bytes still to download
+  $("#dlSum").textContent = order.length? `${order.length} in queue · ${gb(sp)}/s · ${gb(rem)} left${sp>1? " · ~"+dur(rem/sp):""}` : "All done";
+  document.querySelectorAll("[data-q]").forEach(el=>{ const j = jobs[el.dataset.q]; if(!j) return; const pct = j.total_bytes? Math.min(100,j.done_bytes/j.total_bytes*100):0;
+    el.querySelector("[data-bar]").style.width = pct+"%";
+    el.querySelector("[data-t]").textContent = j.error && j.status==="error"? j.error : j.note? j.note :
+      j.status==="downloading"? `${pct.toFixed(1)}% · ${gb(j.done_bytes)} of ${gb(j.total_bytes)} · ${gb(j.speed)}/s · ${dur(j.eta)} left · ${j.connections} connections` :
+      `${({queued:"Queued",resolving:"Listing files",paused:"Paused",done:"Done",verifying:"Verifying",error:"Stopped"})[j.status]||j.status} · ${gb(j.done_bytes)} of ${gb(j.total_bytes)}${j.failed_count? " · "+j.failed_count+" files failed":""}`; });
+}
+function qHtml(i,n){
+  const j = ST.dl.jobs[i], d = CAT_BY[i], act = ACTIVE.includes(j.status);
+  const btns = n? `${act? `<button class="btn sm" data-do="pause" data-id="${i}">❚❚</button>` : `<button class="btn sm primary" data-do="resume" data-id="${i}">${j.status==="error"?"Retry":"▶"}</button>`}
+     <button class="btn sm ghost" data-do="up" data-id="${i}" title="Move up">▲</button><button class="btn sm ghost" data-do="remove" data-id="${i}" title="Remove from queue (keeps downloaded files)">✕</button>`
+    : `<button class="btn sm" data-do="open" data-id="${i}">Open</button>`;
+  return `<div class="qrow" data-q="${i}"><span class="n">${n||"✓"}</span><div><div style="font-weight:600">${esc(d.short)}</div>
+    <div class="prog" style="min-width:0;margin-top:4px"><div class="line"><i data-bar></i></div></div><div class="mini ${j.status==="error"?"err":""}" data-t></div></div><div style="display:flex;gap:4px">${btns}</div></div>`;
+}
+let TEAM = null;
+async function renderAbout(){
+  $("#dTitle").textContent = "About us";
+  if(!TEAM) TEAM = (await get("/api/team")).members;
+  $("#dBody").innerHTML = `<p class="mission"><b>NeuroRadVault</b>: one click away from downloading your desired neuroradiology dataset.</p>
+    <p class="mini" style="margin:0 0 16px">A free, open-source tool that turns any drive into an organised, searchable library of public neuroradiology datasets: it shows what fits, downloads open datasets with one click into the right folder, and keeps going after any interruption.</p>
+    <div class="team">${TEAM.map(m=>`<div class="member"><img src="/${esc(m.photo)}" alt="Photo of ${esc(m.name)}" loading="lazy">
+      <b>${esc(m.name)}</b><span class="deg">${esc(m.degrees)}</span>${m.role? `<div class="mini">${esc(m.role)}</div>`:""}
+      ${m.bio? `<p>${esc(m.bio)}</p>` : `<p class="placeholder">Short biography coming soon.</p>`}
+      <div class="links">${[["linkedin","LinkedIn"],["github","GitHub"],["scholar","Google Scholar"]].filter(([k])=>m.links&&m.links[k]).map(([k,l])=>
+        `<a href="${esc(m.links[k])}" target="_blank" rel="noopener" title="${esc(m.name)} on ${l}" aria-label="${esc(m.name)} on ${l}"><img src="/icons/${k}.svg" alt="${l}"></a>`).join("")}</div></div>`).join("")}</div>
+    <div class="box" style="margin-top:16px"><div class="kv"><div>Version</div><div>${esc(ST.version)}</div><div>Source code</div><div><a href="https://github.com/${esc(ST.repo)}" target="_blank" rel="noopener">github.com/${esc(ST.repo)}</a></div><div>Licence</div><div>MIT (code). Each dataset keeps its own licence; check its official page.</div></div></div>
+    <p class="mini" style="text-align:center;margin-top:18px">Inspired by <a href="https://github.com/NeuroAIHub-Registry/NeuroAIHub" target="_blank" rel="noopener">NeuroAIHub</a>.</p>`;
+}
+function renderSettings(){
+  $("#dTitle").textContent = "Settings";
+  const s = ST.settings;
+  $("#dBody").innerHTML = `<div class="box"><b>Vault folder</b><p class="mono" style="margin:6px 0">${esc(ST.root)}</p>
+      <button class="btn sm" data-do="openroot">Open in file manager</button> <button class="btn sm" data-do="switch">Use another drive or folder…</button></div>
+    <div class="box"><b>Focus domains</b><p class="mini" style="margin:4px 0 8px">Unticked domains become <b>Later</b>: listed last, left out of the Essentials pack, and their folders move to the bottom of the vault as <span class="mono">NN_LATER_…</span>.</p>
+      ${DOM.map(c=>`<div class="field"><span>${DOML[c]}</span><input type="checkbox" data-focus="${c}" ${later().includes(c)?"":"checked"}></div>`).join("")}</div>
+    <div class="box"><b>Dataset catalogue</b><p class="mini" style="margin:4px 0 8px">The catalogue is maintained in this project's GitHub repository and refreshed once a month: new datasets, real sizes and download routes. The app checks for an update every 24 hours and works offline with the last copy.</p>
+      <div class="kv"><div>Catalogue</div><div>${esc(ST.registry_source||"")}</div><div>Last monthly update</div><div>${esc(ST.enrichment_generated||"not yet")}</div><div>Version</div><div>${esc(ST.version)} · <a href="https://github.com/${esc(ST.repo)}" target="_blank" rel="noopener">GitHub</a></div></div>
+      <p style="margin:10px 0 0"><button class="btn sm" data-do="refresh">Check for new datasets now</button></p></div>
+    <div class="box"><b>Appearance</b><div class="field"><span>Theme</span><select id="theme"><option value="">System</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div>`;
+  $("#theme").value = document.documentElement.dataset.theme||"";
+  $("#theme").onchange = e=>{ const v=e.target.value; if(v) document.documentElement.dataset.theme=v; else delete document.documentElement.dataset.theme; try{ localStorage.setItem("nrv-theme",v); }catch(x){} };
+}
+function renderStorage(){
+  const s = ST.storage; $("#dTitle").textContent = "Storage";
+  const by = {}; DS.forEach(d=>{ const l = ST.local[d.id]; if(l && l.status==="done") by[d.category]=(by[d.category]||0)+(l.bytes||0); });
+  $("#dBody").innerHTML = `<div class="box"><div class="meter" style="width:100%;height:12px"><i class="used" style="width:${((s.used-s.vault_bytes)/s.total*100).toFixed(2)}%"></i><i class="vault" style="width:${(s.vault_bytes/s.total*100).toFixed(2)}%"></i><i class="queue" style="width:${(Math.min(s.queued_bytes,s.free)/s.total*100).toFixed(2)}%"></i></div>
+    <div class="kv" style="margin-top:12px"><div>Drive size</div><div>${gb(s.total)}</div><div><span class="key" style="background:var(--accent)"></span>Your datasets</div><div>${gb(s.vault_bytes)} · ${s.datasets} complete</div>
+    <div><span class="key" style="background:var(--faint)"></span>Other files</div><div>${gb(Math.max(0,s.used-s.vault_bytes))}</div><div><span class="key key-queue"></span>Space your queue still needs</div><div>${gb(s.queued_bytes)}</div>
+    <div>Free now</div><div><b>${gb(s.free)}</b></div><div>Free after queue</div><div><b>${gb(s.free_after_queue)}</b></div></div></div>
+    <div class="box"><b>By domain</b><div class="kv" style="margin-top:8px">${DOM.map(c=>`<div>${DOML[c]}</div><div>${gb(by[c]||0)}</div>`).join("")}</div></div>
+    <p class="mini">20 GB is always kept free so your drive never fills up completely.</p>`;
+}
+
+/* ---------------- polling ---------------- */
+const WARNED = new Set();
+async function poll(){
+  try{ ST = await get("/api/status"); }catch(e){ toast("Lost contact with NeuroRadVault. Is its window still open?"); return; }
+  if(ST.setup){ return; }
+  const s = ST.storage;
+  $("#mUsed").style.width = ((s.used-s.vault_bytes)/s.total*100).toFixed(2)+"%"; $("#mVault").style.width = (s.vault_bytes/s.total*100).toFixed(2)+"%";
+  $("#mQueue").style.width = (Math.min(s.queued_bytes,s.free)/s.total*100).toFixed(2)+"%";
+  $("#freeTxt").textContent = `${gb(s.free)} free`;
+  const n = ST.dl.order.length; $("#dlBadge").innerHTML = n? `<span class="badge">${n}</span>` : "";
+  $("#dlSpeed").textContent = ST.dl.total_speed>1? " "+gb(ST.dl.total_speed)+"/s" : "";
+  $("#srcTxt").textContent = ST.registry_source? `Registry: ${ST.registry_source}.` : "";
+  (ST.warnings||[]).forEach(w=>{ if(!WARNED.has(w)){ WARNED.add(w); toast(w, 9000); } });   // each problem once, e.g. index open in Excel
+  if(CAT && ST.built && ST.built!==builtSeen && !ST.refresh.running){ await loadCatalog(); CAT_BY = Object.fromEntries(DS.map(d=>[d.id,d])); }
+  if(CAT){ updateActs(); drawQuick(); if(drawerKind && drawerKind!=="set") renderDrawer(false); }
+}
+
+/* ---------------- events ---------------- */
+document.addEventListener("click", async e=>{
+  const t = e.target.closest("[data-do],[data-open],[data-dom],[data-mod],[data-pri],[data-f]"); if(!t) return;
+  if(t.dataset.pri){ const p = +t.dataset.pri; F.pri.has(p)? F.pri.delete(p) : F.pri.add(p); drawChips(); return apply(); }
+  if(t.dataset.open) return openDrawer("ds", t.dataset.open);
+  if(t.dataset.dom){ F.dom.has(t.dataset.dom)? F.dom.delete(t.dataset.dom) : F.dom.add(t.dataset.dom); drawChips(); return apply(); }
+  if(t.dataset.mod){ F.mod.has(t.dataset.mod)? F.mod.delete(t.dataset.mod) : F.mod.add(t.dataset.mod); drawChips(); return apply(); }
+  if(t.dataset.f){ if(t.dataset.f==="mine") F.local = F.local==="mine"?"":"mine"; else F[t.dataset.f] = !F[t.dataset.f]; drawChips(); return apply(); }
+  const a = t.dataset.do, id = t.dataset.id;
+  if(a==="dl") return download([id]);
+  if(a==="pause"||a==="resume"||a==="remove") { await post("/api/"+a,{ids:[id]}); return poll(); }
+  if(a==="up") { await post("/api/move",{id,where:"up"}); return poll(); }
+  if(a==="pauseall"||a==="resumeall") { await post("/api/"+a.replace("all","_all")); return poll(); }
+  if(a==="open") return post("/api/open",{id});
+  if(a==="openroot") return post("/api/open",{});
+  if(a==="about"){ e.preventDefault(); return openDrawer("about"); }
+  if(a==="verify"){ const r = await post("/api/download",{ids:[id],verify:true}); if(!r.queued) return;
+    toast(r.queued.length? "Checking "+CAT_BY[id].short+" against the host" : CAT_BY[id].short+" is already in your downloads"); return openDrawer("dl"); }
+  if(a==="refresh"){ await post("/api/refresh"); toast("Checking GitHub for registry updates…"); return; }
+  if(a==="switch"){ if(ST.dl.running){ toast("Pause your downloads first."); return; } closeDrawer(); const s = await get("/api/drives"); $("#setupPath").value=""; showSetup({drives:s.drives}); return; }
+});
+document.addEventListener("change", async e=>{
+  const t = e.target;
+  if(t.dataset.set){ const v = t.type==="checkbox"? t.checked : +t.value; await post("/api/settings",{[t.dataset.set]:v}); return poll(); }
+  if(t.dataset.focus){ const lat = DOM.filter(c=>!document.querySelector(`[data-focus="${c}"]`).checked); const r = await post("/api/settings",{later_domains:lat});
+    await poll(); drawChips(); apply(); if(r.ok) toast("Folders reorganised"); else if(drawerKind==="set") renderSettings(); }
+});
+$("#q").addEventListener("input",()=>{ clearTimeout(qTimer); qTimer = setTimeout(apply, 90); });
+$("#sort").onchange = apply; $("#quickCap").onchange = drawQuick;
+$("#btnQuick").onclick = ()=>download(quickList().map(d=>d.id));
+$("#btnDownloads").onclick = ()=>openDrawer("dl");
+$("#btnSettings").onclick = ()=>openDrawer("set");
+$("#btnAbout").onclick = ()=>openDrawer("about");
+$("#pillStorage").onclick = ()=>openDrawer("sto");
+$("#dClose").onclick = closeDrawer; $("#scrim").onclick = closeDrawer;
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeDrawer();
+  if(e.key==="/" && document.activeElement.tagName!=="INPUT"){ e.preventDefault(); $("#q").focus(); } });
+try{ const t = localStorage.getItem("nrv-theme"); if(t) document.documentElement.dataset.theme = t; }catch(e){}
+
+async function boot(){
+  ST = await get("/api/status");
+  if(ST.setup){ showSetup(ST); return; }
+  $("#setup").classList.add("hidden"); $("#app").classList.remove("hidden");
+  await loadCatalog(); CAT_BY = Object.fromEntries(DS.map(d=>[d.id,d]));
+  const u = new URLSearchParams(location.search); if(u.get("q")) $("#q").value = u.get("q");
+  apply(); await poll();
+  const h = location.hash.slice(1); const views = {downloads:"dl",settings:"set",storage:"sto",about:"about"}; if(views[h]) openDrawer(views[h]); else if(u.get("open") && CAT_BY[u.get("open")]) openDrawer("ds", u.get("open"));
+}
+boot().then(()=>setInterval(()=>{ if(!$("#app").classList.contains("hidden")) poll(); }, 1500));
+</script>
+</body>
+</html>
