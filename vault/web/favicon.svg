@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<defs><clipPath id="bc"><path d="M47 95.5L49.0 95.5Q36.3 97.3 26.2 89.4Q14.4 84.6 9.6 72.8Q1.7 62.7 3.5 50.0Q1.7 37.3 9.6 27.3Q14.4 15.4 26.3 10.6Q36.3 2.7 49.0 4.5L47 95Z"/></clipPath></defs>
+<path d="M47 95.5L49.0 95.5Q36.3 97.3 26.2 89.4Q14.4 84.6 9.6 72.8Q1.7 62.7 3.5 50.0Q1.7 37.3 9.6 27.3Q14.4 15.4 26.3 10.6Q36.3 2.7 49.0 4.5L47 95Z" fill="#5d9ad4" stroke="#16304f" stroke-width="3" stroke-linejoin="round"/>
+<path d="M27 0V18.5a3.8 3.8 0 1 0 0 7V74.5a3.8 3.8 0 1 1 0 7V100 M0 36H11.5a3.8 3.8 0 1 1 7 0H34.5a3.8 3.8 0 1 0 7 0H47 M0 64H12.5a3.8 3.8 0 1 0 7 0H34.5a3.8 3.8 0 1 1 7 0H47" clip-path="url(#bc)" fill="none" stroke="#16304f" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M53 4A46 46 0 0 1 53 96Z" fill="#c7d5e3" stroke="#16304f" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="74" cy="50" r="11" fill="none" stroke="#16304f" stroke-width="3"/>
+<path d="M74.00 54.50L74.00 66.00 M70.10 52.25L60.14 58.00 M70.10 47.75L60.14 42.00 M74.00 45.50L74.00 34.00 M77.90 47.75L87.86 42.00 M77.90 52.25L87.86 58.00" stroke="#16304f" stroke-width="3" stroke-linecap="round"/>
+<circle cx="74" cy="50" r="3.2" fill="#16304f"/>
+<rect x="92" y="20" width="6.5" height="14" rx="3.25" fill="#9fb3c8" stroke="#16304f" stroke-width="2.2"/>
+<rect x="92" y="66" width="6.5" height="14" rx="3.25" fill="#9fb3c8" stroke="#16304f" stroke-width="2.2"/>
+</svg>
