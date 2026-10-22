@@ -1,0 +1,42 @@
+name: Update catalog
+
+# Once a month: refresh our mirror of the NeuroAIHub CSVs (kept as-is if upstream is down or gone), read our
+# own additions (data/registry/additions.csv), measure every dataset's size on its host, work out the
+# one-click download routes, and commit data/. Installed apps read data/ from this repository (cached 24 h),
+# so they pick up new datasets without updating the app.
+
+on:
+  schedule:
+    - cron: "23 4 1 * *"     # 1st of every month, 04:23 UTC
+  workflow_dispatch:          # "Run workflow" button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-catalog
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild the dataset list and sizes
+        run: python -m vault.enrich
+      - name: Check the app still works with the new data
+        run: python -m unittest discover -s tests
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          N=$(python -c "import json;print(json.load(open('data/enrichment.json'))['count'])")
+          A=$(python -c "import json;d=json.load(open('data/enrichment.json'));print(sum(1 for r in d['datasets'].values() if r.get('downloader')))")
+          git commit -m "Monthly catalogue update: $N datasets, $A one-click"
+          git push
