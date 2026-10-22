@@ -1,0 +1,1423 @@
+{
+ "generated": "2026-10-22 18:36:58 UTC",
+ "registry_source": "project catalogue (mirror refreshed 2026-10-22)",
+ "count": 368,
+ "datasets": {
+  "brats-2012": {},
+  "brats-2013": {},
+  "brats-2014": {},
+  "brats-2015": {},
+  "brats-2016": {},
+  "brats-2017": {},
+  "brats-2018": {},
+  "brats-2019": {},
+  "brats-2020": {},
+  "brats-2021": {},
+  "brats-2022": {},
+  "brats-2023": {},
+  "brats-2024": {},
+  "brats-reg": {},
+  "the-r-o-hortega-university-hospital-glioblastoma-dataset-rhu": {
+   "auto_error": "tcia: collection 'rhuh-gbm' not in the public NBIA API (download from the TCIA page)"
+  },
+  "bcbm-radiogenomics-mri-dataset-of-metastatic-breast-cancer-t": {
+   "auto_error": "tcia: collection 'bcbm-radiogenomics' not in the public NBIA API (download from the TCIA page)"
+  },
+  "brain-tumor-segmentation-brats-challenge-africa-brats-africa": {
+   "auto_error": "tcia: collection 'brats-africa' not in the public NBIA API (download from the TCIA page)"
+  },
+  "remind-the-brain-resection-multimodal-imaging-database": {
+   "downloader": {
+    "type": "tcia",
+    "arg": "ReMIND"
+   },
+   "size_bytes": 43527792406,
+   "file_count": 1346,
+   "size_note": "1346 DICOM series"
+  },
+  "upenn-gbm-multi-parametric-magnetic-resonance-imaging-mpmri-": {
+   "downloader": {
+    "type": "tcia",
+    "arg": "UPENN-GBM"
+   },
+   "size_bytes": 139398709144,
+   "file_count": 3680,
+   "size_note": "3680 DICOM series"
+  },
+  "ucsf-pdgm-the-university-of-california-san-francisco-preoper": {
+   "auto_error": "tcia: collection 'ucsf-pdgm' not in the public NBIA API (download from the TCIA page)"
+  },
+  "glis-rt-glioma-image-segmentation-for-radiotherapy": {},
+  "qin-gbm-treatment-response": {},
+  "ivygap-ivy-glioblastoma-atlas-project": {},
+  "lgg-1p19qdeletion-low-grade-glioma-1p19q-deletion": {},
+  "qin-brain-dsc-mri-glioma-dsc-mri-perfusion-data-with-standar": {},
+  "repository-for-molecular-brain-neoplasia-data-rembrandt": {},
+  "tcga-lgg-the-cancer-genome-atlas-low-grade-glioma-collection": {},
+  "acrin-dsc-mr-brain-admb": {},
+  "mu-glioma-post-university-of-missouri-post-operative-glioma-": {
+   "auto_error": "tcia: collection 'mu-glioma-post' not in the public NBIA API (download from the TCIA page)"
+  },
+  "brain-tumor-mri-dataset": {},
+  "pretreat-metstobrain-masks": {
+   "auto_error": "tcia: collection 'pretreat-metstobrain-masks' not in the public NBIA API (download from the TCIA page)"
+  },
+  "brain-mri-nd-5-dataset": {},
+  "openbtai-brain-metastasis-1": {},
+  "brain-tumor-progression": {},
+  "burdenko-gbm-progression-bgpd": {},
+  "brain-tr-gammaknife-brain-tumor-recurrence-prediction-after-": {},
+  "meningioma-seg-class": {},
+  "brats-tcga-lgg": {},
+  "tcga-gbm-the-cancer-genome-atlas-glioblastoma-multiforme": {},
+  "bratious-brain-tumor-intraoperative-ultrasound-dataset": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "18130394"
+   },
+   "size_bytes": 242916251,
+   "file_count": 3
+  },
+  "tlemcen-neurooncmri": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "9ns6748zkc",
+     "1"
+    ]
+   },
+   "size_bytes": 336387630,
+   "file_count": 4
+  },
+  "glioblastoma-multiforme-brain-mri-dataset-for-tumor-detectio": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "mxsb7snyvx",
+     "2"
+    ]
+   },
+   "size_bytes": 51247516,
+   "file_count": 2
+  },
+  "matched-mri-segmentations-and-histopathologic-images-of-brai": {
+   "auto_error": "tcia: collection 'brain-mets-lung-mri-path-segs' not in the public NBIA API (download from the TCIA page)"
+  },
+  "mm-neuroonco-multimodal-benchmark-and-instruction-dataset-fo": {},
+  "ucsd-ptgbm-university-of-california-san-diego-post-treatment": {
+   "auto_error": "tcia: collection 'ucsd-ptgbm' not in the public NBIA API (download from the TCIA page)"
+  },
+  "utsw-glioma-the-university-of-texas-southwestern-glioma-data": {
+   "auto_error": "tcia: collection 'utsw-glioma' not in the public NBIA API (download from the TCIA page)"
+  },
+  "imago-amsterdam-imaging-and-clinical-glioma-dataset": {},
+  "real-world-multi-institutional-glioblastoma-mri-dataset-with": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007045"
+   },
+   "size_bytes": 19121941744,
+   "size_note": "OpenNeuro ds007045 v2.0.1",
+   "link": "https://openneuro.org/datasets/ds007045"
+  },
+  "ucsf-alptdg-ucsf-adult-longitudinal-post-treatment-diffuse-g": {},
+  "lumiere-longitudinal-glioblastoma-mri-with-expert-rano-evalu": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "collection",
+     "5904905"
+    ]
+   },
+   "size_bytes": 86807855144,
+   "file_count": 9
+  },
+  "egd-erasmus-glioma-database": {},
+  "figshare-brain-tumor-dataset-cheng-et-al": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "1512427"
+    ]
+   },
+   "size_bytes": 879502365,
+   "file_count": 6
+  },
+  "lgg-mri-segmentation-kaggle-buda-et-al": {},
+  "medical-segmentation-decathlon-task01-braintumour": {},
+  "gazi-brains-2020": {},
+  "amide-proton-transfer-imaging-of-diffuse-gliomas-who-2021-cn": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004717"
+   },
+   "size_bytes": 3595161598,
+   "size_note": "OpenNeuro ds004717 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds004717"
+  },
+  "a-structural-and-functional-mri-dataset-of-brain-tumour-pati": {},
+  "retrospective-task-rest-fmri-data-from-tumor-patients": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005003"
+   },
+   "size_bytes": 6940301702,
+   "size_note": "OpenNeuro ds005003 v2.0.0",
+   "link": "https://openneuro.org/datasets/ds005003"
+  },
+  "68ga-ga-pentixafor-cxcr4-pet-ct-of-high-grade-glioma": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "4xs94489rw",
+     "1"
+    ]
+   },
+   "size_bytes": 833376600,
+   "file_count": 24
+  },
+  "resect-retrospective-evaluation-of-cerebral-tumors": {},
+  "bite-brain-images-of-tumors-for-evaluation-database": {},
+  "brats-peds-pediatric-high-grade-glioma-multi-institutional-d": {},
+  "brats-men-rt-2024-brats-meningioma-radiotherapy-dataset": {},
+  "mapping-pituitary-neuroendocrine-tumors-annotated-mri-datase": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "27894084"
+    ]
+   },
+   "size_bytes": 47245927391,
+   "file_count": 6
+  },
+  "vestibular-schwannoma-seg-segmentation-of-vestibular-schwann": {
+   "downloader": {
+    "type": "tcia",
+    "arg": "Vestibular-Schwannoma-SEG"
+   },
+   "size_bytes": 27718163836,
+   "file_count": 1928,
+   "size_note": "1928 DICOM series"
+  },
+  "vestibular-schwannoma-mc-rc-multi-centre-routine-clinical-vs": {
+   "downloader": {
+    "type": "tcia",
+    "arg": "Vestibular-Schwannoma-MC-RC"
+   },
+   "size_bytes": 14253687460,
+   "file_count": 487,
+   "size_note": "487 DICOM series"
+  },
+  "crossmoda-cross-modality-domain-adaptation-challenge-for-ves": {},
+  "olfactory-groove-meningioma-multimodal-mri-and-clinical-data": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007345"
+   },
+   "size_bytes": 11968204283,
+   "size_note": "OpenNeuro ds007345 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds007345"
+  },
+  "ucsf-bmsr-ucsf-brain-metastases-stereotactic-radiosurgery-mr": {},
+  "nyumets-brain-longitudinal-metastatic-brain-cancer-dataset": {},
+  "yale-brain-mets-longitudinal-11-000-study-longitudinal-brain": {
+   "auto_error": "tcia: collection 'yale-brain-mets-longitudinal' not in the public NBIA API (download from the TCIA page)"
+  },
+  "brainmetshare-stanford": {},
+  "motum-multi-center-multi-origin-brain-tumor-mri-dataset": {},
+  "brisc-brain-tumor-image-segmentation-and-classification-data": {},
+  "ajbds-2023-clinically-acquired-brain-sol-segmentation-datase": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "gmr8yyn77c",
+     "1"
+    ]
+   },
+   "size_bytes": 514142980,
+   "file_count": 1
+  },
+  "brats-2025-miccai-lighthouse-challenge-brain-tumor-segmentat": {},
+  "cptac-gbm-clinical-proteomic-tumor-analysis-consortium-gliob": {},
+  "rider-neuro-mri-reference-image-database-to-evaluate-therapy": {},
+  "acrin-fmiso-brain-acrin-6684": {},
+  "atlas-anatomical-tracings-of-lesions-after-stroke-v2-0": {},
+  "aisd-acute-ischemic-stroke-dataset": {},
+  "brain-stroke-ct-image-dataset": {},
+  "cpaisd-core-penumbra-acute-ischemic-stroke-dataset": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "10892316"
+   },
+   "size_bytes": 5635376779,
+   "file_count": 1
+  },
+  "cq500": {},
+  "rsna-intracranial-hemorrhage-detection-rsna-brain-ct-hemorrh": {},
+  "ischemic-stroke-lesion-segmentation-isles-2024": {},
+  "ischemic-stroke-lesion-segmentation-isles-2022": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "7960856"
+   },
+   "size_bytes": 1692727183,
+   "file_count": 2
+  },
+  "ischemic-stroke-lesion-segmentation-isles-2015-siss-sub-acut": {},
+  "ischemic-stroke-lesion-segmentation-isles-2015-spes-stroke-p": {},
+  "ischemic-stroke-lesion-segmentation-isles-2017": {},
+  "ischemic-stroke-lesion-segmentation-isles-2018": {},
+  "dsca-a-public-digital-subtraction-angiography-dsa-dataset-fo": {},
+  "computed-tomography-images-for-intracranial-hemorrhage-detec": {},
+  "hemseg-200": {},
+  "bhsd-a-3d-multi-class-brain-hemorrhage-segmentation-dataset": {
+   "downloader": {
+    "type": "huggingface",
+    "arg": "Wendy-Fly/BHSD"
+   },
+   "size_bytes": 16968283885,
+   "file_count": 7
+  },
+  "phe-sich-ct-ids": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "23957937"
+    ]
+   },
+   "size_bytes": 1300209108,
+   "file_count": 1
+  },
+  "center-tbi-collaborative-european-neurotrauma-effectiveness-": {},
+  "the-evolution-of-cost-efficiency-in-neural-networks-during-r": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000220"
+   },
+   "size_bytes": 3361761974,
+   "size_note": "OpenNeuro ds000220 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds000220"
+  },
+  "track-tbi-the-ninds-funded-multicenter-transforming-research": {},
+  "erich-ethnic-racial-variations-of-intracerebral-hemorrhage-s": {
+   "auto_error": "mendeley: Mendeley-style API returned no file list"
+  },
+  "annotated-head-ct-angiography-dataset-for-intracranial-aneur": {},
+  "atlas-anatomical-tracings-of-lesions-after-stroke-r1-1-v1-2": {},
+  "soop-stroke-outcome-optimization-project": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004889"
+   },
+   "size_bytes": 71903631870,
+   "size_note": "OpenNeuro ds004889 v1.1.2",
+   "link": "https://openneuro.org/datasets/ds004889"
+  },
+  "arc-aphasia-recovery-cohort": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004884"
+   },
+   "size_bytes": 292972584020,
+   "size_note": "OpenNeuro ds004884 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds004884"
+  },
+  "isles-2016-ischemic-stroke-lesion-segmentation-lesion-outcom": {},
+  "apis-a-paired-ct-mri-dataset-for-ischemic-stroke-segmentatio": {},
+  "unitobrain-ct-perfusion-dataset": {},
+  "codec-iv-clot-detection-benchmark-in-ischemic-stroke-vessel-": {},
+  "chronic-brain-lesion-mri-with-manual-lesion-segmentations-cc": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007212"
+   },
+   "size_bytes": 1515312390,
+   "size_note": "OpenNeuro ds007212 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds007212"
+  },
+  "pre-post-rehabilitation-fmri-data-of-post-stroke-patients": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003999"
+   },
+   "size_bytes": 7231699453,
+   "size_note": "OpenNeuro ds003999 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds003999"
+  },
+  "precise-vs-approximate-numeracy-in-stroke-participants-lesio": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006533"
+   },
+   "size_bytes": 270758727,
+   "size_note": "OpenNeuro ds006533 v2.1.0",
+   "link": "https://openneuro.org/datasets/ds006533"
+  },
+  "instance-2022-intracranial-hemorrhage-segmentation-challenge": {},
+  "rsna-intracranial-aneurysm-detection-dataset-rsna-ica-2025-a": {},
+  "adam-aneurysm-detection-and-segmentation-challenge": {},
+  "lausanne-tof-mra-aneurysm-cohort": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003949"
+   },
+   "size_bytes": 14455131803,
+   "size_note": "OpenNeuro ds003949 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds003949"
+  },
+  "royal-brisbane-tof-mra-intracranial-aneurysm-database-with-i": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005096"
+   },
+   "size_bytes": 7763577557,
+   "size_note": "OpenNeuro ds005096 v1.0.3",
+   "link": "https://openneuro.org/datasets/ds005096"
+  },
+  "intracranial-aneurysm-cta-images-and-3d-models-with-clinical": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "26965450"
+    ]
+   },
+   "size_bytes": 15557345067,
+   "file_count": 3
+  },
+  "cada-cerebral-aneurysm-detection-and-analysis-challenge": {},
+  "topcow-topology-aware-circle-of-willis-segmentation-for-cta-": {},
+  "topbrain-whole-brain-vessel-anatomy-segmentation-challenge-c": {},
+  "crown-circle-of-willis-classification-and-artery-quantificat": {},
+  "costa-multi-center-tof-mra-cerebrovascular-segmentation-data": {},
+  "wmh-segmentation-challenge-miccai-2017": {},
+  "valdo-vascular-lesions-detection-and-segmentation-challenge-": {},
+  "epvs-challenge-miccai-2024-enlarged-perivascular-spaces-segm": {},
+  "the-language-network-reemerges-during-recovery-from-severe-t": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds002675"
+   },
+   "size_bytes": 1429638282,
+   "size_note": "OpenNeuro ds002675 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds002675"
+  },
+  "ascending-arousal-network-connectivity-during-recovery-from-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003367"
+   },
+   "size_bytes": 1169933125,
+   "size_note": "OpenNeuro ds003367 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds003367"
+  },
+  "scan-standardized-centralized-alzheimer-s-related-dementias-": {},
+  "adni-alzheimer-s-disease-neuroimaging-initiative": {},
+  "brainlat": {},
+  "oasis-1-open-access-series-of-imaging-studies-1": {},
+  "oasis-2-open-access-series-of-imaging-studies-2": {},
+  "oasis-3-open-access-series-of-imaging-studies-3": {},
+  "oasis-4-open-access-series-of-imaging-studies-4": {},
+  "layton-aging-and-alzheimer-s-disease-center-laadc-oregon-alz": {},
+  "australian-imaging-biomarkers-and-lifestyle-aibl-study-of-ag": {},
+  "minimal-interval-resonance-imaging-in-alzheimer-s-disease-mi": {},
+  "european-dti-study-on-dementia-edsd": {},
+  "vita-vienna-transdanube-aging-study": {},
+  "harvard-aging-brain-study-habs": {},
+  "pre-symptomatic-evaluation-of-experimental-or-novel-treatmen": {},
+  "alzheimer-s-disease-versus-bipolar-disorder-versus-health-co-f5b60d": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "3935636"
+   },
+   "size_bytes": 16299855376,
+   "file_count": 7
+  },
+  "white-matter-damage-in-frontotemporal-dementia-and-alzheimer": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "4965033"
+   },
+   "size_bytes": 278779123,
+   "file_count": 325
+  },
+  "frontotemporal-lobar-degeneration-neuroimaging-initiative-ft": {},
+  "dominantly-inherited-alzheimer-network-dian-observational-st": {},
+  "longitudinal-aging-study-in-india-diagnostic-assessment-of-d": {},
+  "religious-orders-study-and-memory-and-aging-project-rosmap-n": {},
+  "uk-biobank-imaging-study": {},
+  "baltimore-longitudinal-study-of-aging-blsa": {},
+  "european-prevention-of-alzheimer-s-dementia-epad": {},
+  "biomarkers-for-identifying-neurodegenerative-disorders-early-b3acee": {},
+  "biomarkers-for-identifying-neurodegenerative-disorders-early-b3acee-2": {},
+  "the-china-aging-and-neurodegenerative-disorder-initiative-ca": {},
+  "the-mayo-clinic-study-of-aging-mcsa": {},
+  "4-repeat-tauopathy-neuroimaging-initiative-4rtni": {},
+  "multiple-sclerosis-lesion-segmentation-challenge-2016-msseg-": {},
+  "multiple-sclerosis-lesion-segmentation-challenge-2021-msseg-": {},
+  "italian-neuroimaging-network-initiative-inni-dataset": {},
+  "the-amsterdam-multiple-sclerosis-cohort-dataset": {},
+  "isbi-2015-longitudinal-ms-lesion-segmentation-challenge-data": {},
+  "brain-mri-dataset-of-multiple-sclerosis-with-consensus-manua": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "8bctsm8jz7",
+     "1"
+    ]
+   },
+   "size_bytes": 745030828,
+   "file_count": 1
+  },
+  "3d-mr-image-database-of-multiple-sclerosis-patients-with-whi": {},
+  "parkinson-s-disease-datasets-taowu": {},
+  "parkinson-s-progression-markers-initiative-ppmi": {},
+  "lrrk2-cohort-consortium-lcc": {},
+  "luxembourg-parkinson-s-study": {},
+  "quantitative-neuroimaging-laboratory-dataset-qnld": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006148"
+   },
+   "size_bytes": 2626576125821,
+   "size_note": "OpenNeuro ds006148 v1.0.7",
+   "link": "https://openneuro.org/datasets/ds006148"
+  },
+  "ms3seg-a-multiple-sclerosis-mri-dataset-with-tri-mask-annota": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "30393475"
+    ]
+   },
+   "size_bytes": 6743648773,
+   "file_count": 12
+  },
+  "bind-brain-imaging-and-neurophysiology-dataset": {},
+  "knight-alzheimer-research-imaging-kari-dataset": {},
+  "anti-amyloid-treatment-in-asymptomatic-alzheimer-s-disease-a": {},
+  "health-and-aging-brain-study-health-disparities-habs-hd": {},
+  "caddementia-computer-aided-diagnosis-of-dementia-challenge": {},
+  "centiloid-project-reference-pet-data-gaain": {},
+  "japanese-alzheimer-s-disease-neuroimaging-initiative-j-adni": {},
+  "longitudinal-early-onset-alzheimer-s-disease-study-leads": {},
+  "dzne-longitudinal-cognitive-impairment-and-dementia-study-de": {},
+  "alfa-alzheimer-s-and-families-project-alfa": {},
+  "insight-46-mrc-national-survey-of-health-and-development-neu": {},
+  "amypad-prognostic-and-natural-history-study-amypad-pnhs": {},
+  "comprehensive-assessment-of-neurodegeneration-and-dementia-c": {},
+  "pearl-neuro-polish-electroencephalography-alzheimer-s-risk-g": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004796"
+   },
+   "size_bytes": 257896989782,
+   "size_note": "OpenNeuro ds004796 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds004796"
+  },
+  "ex-vivo-mri-atlas-of-the-human-medial-temporal-lobe-neurodeg": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003052"
+   },
+   "size_bytes": 1803173193,
+   "size_note": "OpenNeuro ds003052 v2.0.1",
+   "link": "https://openneuro.org/datasets/ds003052"
+  },
+  "medial-temporal-lobe-vulnerability-to-neurofibrillary-tangle": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004767"
+   },
+   "size_bytes": 3546615030,
+   "size_note": "OpenNeuro ds004767 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds004767"
+  },
+  "alzaset-expert-annotated-clinical-alzheimer-s-mri-dataset": {},
+  "genetic-frontotemporal-dementia-initiative-genfi": {},
+  "artfl-lefftds-longitudinal-frontotemporal-lobar-degeneration": {},
+  "multimodal-ultra-high-field-mri-clinical-cognitive-and-genet": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007036"
+   },
+   "size_bytes": 44841040254,
+   "size_note": "OpenNeuro ds007036 v1.1.3",
+   "link": "https://openneuro.org/datasets/ds007036"
+  },
+  "an-fmri-dataset-for-appetite-neural-correlates-in-people-liv": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005874"
+   },
+   "size_bytes": 80130232848,
+   "size_note": "OpenNeuro ds005874 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds005874"
+  },
+  "canadian-als-neuroimaging-consortium-calsnic": {},
+  "track-hd-track-on-hd": {},
+  "sca2-diffusion-tensor-imaging": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds001378"
+   },
+   "size_bytes": 645364684,
+   "size_note": "OpenNeuro ds001378 v00003",
+   "link": "https://openneuro.org/datasets/ds001378"
+  },
+  "parkinson-s-disease-datasets-neurocon": {},
+  "ninds-parkinson-s-disease-biomarkers-program-pdbp": {},
+  "ant-healthy-aging-and-parkinson-s-disease": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds001907"
+   },
+   "size_bytes": 4697472463,
+   "size_note": "OpenNeuro ds001907 v3.2.0",
+   "link": "https://openneuro.org/datasets/ds001907"
+  },
+  "london-health-sciences-centre-parkinson-s-disease-dataset-lh": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004471"
+   },
+   "size_bytes": 324739325,
+   "size_note": "OpenNeuro ds004471 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds004471"
+  },
+  "resting-state-mri-from-healthy-controls-pd-with-normal-cogni": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005892"
+   },
+   "size_bytes": 2374616610,
+   "size_note": "OpenNeuro ds005892 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005892"
+  },
+  "test-retest-reliability-of-resting-state-fmri-during-dbs-for": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005906"
+   },
+   "size_bytes": 1516217848,
+   "size_note": "OpenNeuro ds005906 v1.0.8",
+   "link": "https://openneuro.org/datasets/ds005906"
+  },
+  "mslesseg-multiple-sclerosis-lesion-segmentation-dataset-icpr": {},
+  "pedims-a-pediatric-multiple-sclerosis-lesion-segmentation-da": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "article",
+     "28701065"
+    ]
+   },
+   "size_bytes": 1786833490,
+   "file_count": 365
+  },
+  "miccai-2008-ms-lesion-segmentation-challenge": {},
+  "shifts-ms-lesion-segmentation-benchmark-shifts-2-0": {},
+  "longitudinal-mr-image-database-of-multiple-sclerosis-patient": {},
+  "multi-scale-multi-modal-imaging-assessment-of-trajectories-o": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007908"
+   },
+   "size_bytes": 176583189254,
+   "size_note": "OpenNeuro ds007908 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds007908"
+  },
+  "skip-socal-kinesia-and-incentivization-for-parkinson-s-disea": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005263"
+   },
+   "size_bytes": 69398238690,
+   "size_note": "OpenNeuro ds005263 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds005263"
+  },
+  "spine-metastatic-bone-cancer-pre-and-post-radiotherapy-ct-sp": {
+   "downloader": {
+    "type": "tcia",
+    "arg": "Spine-Mets-CT-SEG"
+   },
+   "size_bytes": 20358450490,
+   "file_count": 110,
+   "size_note": "110 DICOM series"
+  },
+  "ctspine1k-a-large-scale-dataset-for-spinal-vertebrae-segment": {},
+  "spider-spine-segmentation-discs-vertebrae-and-spinal-canal": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "10159290"
+   },
+   "size_bytes": 3758940056,
+   "file_count": 4
+  },
+  "spine-generic-public-database-single-subject-and-multi-subje": {},
+  "vindr-spinexr": {},
+  "composite-dataset-of-lumbar-spine-mid-sagittal-images-with-a": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "k3b363f3vz",
+     "2"
+    ]
+   },
+   "size_bytes": 49300900,
+   "file_count": 1543
+  },
+  "dataset-of-instrumented-spinal-cord-t1-t2-weighted-mri-scans": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "sjpx7md7cf",
+     "1"
+    ]
+   },
+   "size_bytes": 8147577376,
+   "file_count": 403
+  },
+  "xvertseg-segmentation-and-classification-of-fractured-verteb": {},
+  "verse-benchmark-combined-verse-2019-verse-2020-vertebrae-lab": {},
+  "lateral-full-spine-x-ray-image-dataset": {},
+  "the-rsna-cervical-spine-fracture-ct-dataset": {},
+  "lumase-a-lumbar-vertebra-anatomical-region-segmentation-data": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "7181338"
+   },
+   "size_bytes": 2939692238,
+   "file_count": 1
+  },
+  "buu-lspine-a-thai-open-lumbar-spine-dataset-for-spondylolist": {},
+  "a-dataset-of-scoliosis-spondylolisthesis-and-normal-vertebra": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "xkt857dsxk",
+     "1"
+    ]
+   },
+   "size_bytes": 85596630,
+   "file_count": 6
+  },
+  "annotated-t2-weighted-mr-images-of-the-lower-spine": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "22304"
+   },
+   "size_bytes": 250346467,
+   "file_count": 46
+  },
+  "spinesagt2wdataset3": {},
+  "buu-spine-dataset": {},
+  "biomedia-spine-ct-dataset": {},
+  "spineweb-dataset-16-609-spinal-anterior-posterior-x-ray-imag": {},
+  "miccai-2019-verse-challenge-dataset-verse-2019": {},
+  "multi-center-multi-vendor-vertebral-segmentation-dataset-ver": {},
+  "lumbar-spine-mri-dataset": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "k57fr854j2",
+     "2"
+    ]
+   },
+   "size_bytes": 6270535053,
+   "file_count": 1
+  },
+  "an-open-access-lumbosacral-spine-mri-dataset-with-enhanced-s": {
+   "downloader": {
+    "type": "figshare",
+    "arg": [
+     "collection",
+     "7372564"
+    ]
+   },
+   "size_bytes": 1819908439,
+   "file_count": 7
+  },
+  "medical-spine-sagittal-mri-dataset-for-segmentation-and-fora": {
+   "downloader": {
+    "type": "mendeley",
+    "arg": [
+     "https://data.mendeley.com",
+     "rgb77xm3jf",
+     "4"
+    ]
+   },
+   "size_bytes": 2035587816,
+   "file_count": 1
+  },
+  "midrc-spine-ct-dataset": {},
+  "mr-rate-brain-and-spine-mri-volumes-with-radiology-reports": {
+   "auto_error": "huggingface: Hugging Face dataset is gated; accept its terms on the website first"
+  },
+  "rsna-lumbardisc-lumbar-degenerative-imaging-spine-classifica": {},
+  "cspineseg-duke-university-cervical-spine-mri-segmentation-da": {},
+  "mmcsd-multi-modal-and-multi-view-cervical-spondylosis-imagin": {},
+  "csxa-cervical-spine-x-ray-atlas": {},
+  "multi-scanner-and-multi-modal-lumbar-vertebral-body-and-inte": {
+   "auto_error": "osf: host lists no data files (only docs/licence); data is hosted elsewhere"
+  },
+  "myosegmentum-spine-lumbar-muscle-and-vertebral-body-water-fa": {
+   "auto_error": "osf: HTTP Error 401: Unauthorized"
+  },
+  "spinal-cord-grey-matter-segmentation-challenge-scgm-2016": {},
+  "episeg-spinal-cord-fmri-segmentation-database-multi-subject": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005143"
+   },
+   "size_bytes": 231660578,
+   "size_note": "OpenNeuro ds005143 v1.3.1",
+   "link": "https://openneuro.org/datasets/ds005143"
+  },
+  "whole-spine-anatomical-mri-dataset-b0-simulations": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005616"
+   },
+   "size_bytes": 2700004271,
+   "size_note": "OpenNeuro ds005616 v1.1.6",
+   "link": "https://openneuro.org/datasets/ds005616"
+  },
+  "lumbarsr-paired-clinical-ct-and-photon-counting-micro-ct-of-": {},
+  "cospine-simultaneous-cortico-spinal-fmri-pain-dataset": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005883"
+   },
+   "size_bytes": 12695614249,
+   "size_note": "OpenNeuro ds005883 v1.1.1",
+   "link": "https://openneuro.org/datasets/ds005883"
+  },
+  "cospine-simultaneous-cortico-spinal-fmri-motor-dataset": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005884"
+   },
+   "size_bytes": 7558949256,
+   "size_note": "OpenNeuro ds005884 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds005884"
+  },
+  "resting-state-spinal-cord-fmri-reliability-fc-reliability-sp": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004386"
+   },
+   "size_bytes": 7861372741,
+   "size_note": "OpenNeuro ds004386 v1.1.2",
+   "link": "https://openneuro.org/datasets/ds004386"
+  },
+  "reliability-of-task-based-fmri-in-the-dorsal-horn-of-the-hum": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004926"
+   },
+   "size_bytes": 16365052852,
+   "size_note": "OpenNeuro ds004926 v1.3.1",
+   "link": "https://openneuro.org/datasets/ds004926"
+  },
+  "paired-robotic-and-handheld-lumbar-spine-ultrasound-with-gro": {},
+  "ideas-imaging-database-for-epilepsy-and-surgery": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005602"
+   },
+   "size_bytes": 4104172129,
+   "size_note": "OpenNeuro ds005602 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005602"
+  },
+  "ideas-ii-open-diffusion-mri-and-connectivity-data-for-epilep": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007401"
+   },
+   "size_bytes": 20459260204,
+   "size_note": "OpenNeuro ds007401 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds007401"
+  },
+  "an-open-presurgery-mri-dataset-of-people-with-epilepsy-and-f": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004199"
+   },
+   "size_bytes": 4146777395,
+   "size_note": "OpenNeuro ds004199 v1.0.6",
+   "link": "https://openneuro.org/datasets/ds004199"
+  },
+  "multimodal-epilepsy-dataset-of-paired-3t-and-7t-mri-and-intr": {},
+  "temporal-lobe-epilepsy-unam": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004469"
+   },
+   "size_bytes": 7697557389,
+   "size_note": "OpenNeuro ds004469 v1.2.0",
+   "link": "https://openneuro.org/datasets/ds004469"
+  },
+  "episurg-postoperative-mri-after-epilepsy-surgery": {},
+  "upper-limb-dystonia-cervical-dystonia-and-healthy-controls-d": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006395"
+   },
+   "size_bytes": 66354687382,
+   "size_note": "OpenNeuro ds006395 v1.0.8",
+   "link": "https://openneuro.org/datasets/ds006395"
+  },
+  "continuous-theta-burst-stimulation-to-a-lesion-network-in-ce": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds008174"
+   },
+   "size_bytes": 31948870068,
+   "size_note": "OpenNeuro ds008174 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds008174"
+  },
+  "structural-and-diffusion-mri-in-essential-tremor": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds008336"
+   },
+   "size_bytes": 937075834,
+   "size_note": "OpenNeuro ds008336 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds008336"
+  },
+  "brain-connectivity-predicts-placebo-response-across-chronic-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000208"
+   },
+   "size_bytes": 4932450486,
+   "size_note": "OpenNeuro ds000208 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds000208"
+  },
+  "emotion-regulation-in-females-with-fibromyalgia-behavioral-c": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004144"
+   },
+   "size_bytes": 18092293009,
+   "size_note": "OpenNeuro ds004144 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds004144"
+  },
+  "elevated-translocator-protein-in-skull-bone-marrow-is-linked": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007907"
+   },
+   "size_bytes": 451866255,
+   "size_note": "OpenNeuro ds007907 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds007907"
+  },
+  "neuroepigenetic-alterations-in-chronic-low-back-pain-with-pe": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007135"
+   },
+   "size_bytes": 5329937922,
+   "size_note": "OpenNeuro ds007135 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds007135"
+  },
+  "resting-state-fmri-study-of-non-bothersome-tinnitus-connecti": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds002896"
+   },
+   "size_bytes": 4062655236,
+   "size_note": "OpenNeuro ds002896 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds002896"
+  },
+  "neurocovid-mri-dwi-and-fmri-with-reversal-learning": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005364"
+   },
+   "size_bytes": 17731054982,
+   "size_note": "OpenNeuro ds005364 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005364"
+  },
+  "ixi-dataset": {},
+  "hcp-young-adult-wu-minn-human-connectome-project": {},
+  "cam-can-cambridge-centre-for-ageing-and-neuroscience": {},
+  "aomic-amsterdam-open-mri-collection-id1000-piop1-piop2": {},
+  "openbhb-open-big-healthy-brains-brain-age-benchmark": {},
+  "t1-weighted-in-vivo-whole-brain-mri-at-250-m-isotropic-resol": {},
+  "cc-359-calgary-campinas-359": {},
+  "nfbs-neurofeedback-skull-stripped-repository": {},
+  "mindboggle-101": {},
+  "mrbrains13-and-mrbrains18-brain-tissue-segmentation-challeng": {},
+  "fastmri-brain-raw-k-space": {},
+  "m4raw-low-field-0-3t-multi-contrast-brain-k-space-dataset": {},
+  "diff5t-5-0-tesla-human-brain-diffusion-mri-k-space-and-image": {},
+  "mr-art-movement-related-artefacts-dataset": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004173"
+   },
+   "size_bytes": 4526466554,
+   "size_note": "OpenNeuro ds004173 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds004173"
+  },
+  "brain-mri-full-clinical-protocol-with-and-without-intentiona": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004332"
+   },
+   "size_bytes": 9678656905,
+   "size_note": "OpenNeuro ds004332 v1.3.0",
+   "link": "https://openneuro.org/datasets/ds004332"
+  },
+  "clinical-pediatric-brain-mri-with-and-without-motion-correct": {},
+  "synthrad2023-synthetic-ct-generation-challenge-brain-task": {},
+  "the-brain-images-of-normal-subjects-brains-imagebank": {},
+  "distinct-brain-systems-mediate-the-effects-of-nociceptive-in": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000140"
+   },
+   "size_bytes": 15006312559,
+   "size_note": "OpenNeuro ds000140 v00001",
+   "link": "https://openneuro.org/datasets/ds000140"
+  },
+  "learning-the-statistics-of-pain": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003836"
+   },
+   "size_bytes": 16555945098,
+   "size_note": "OpenNeuro ds003836 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds003836"
+  },
+  "expectation-effects-on-pain-and-visual-perception-ppri-study": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005413"
+   },
+   "size_bytes": 160113517690,
+   "size_note": "OpenNeuro ds005413 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005413"
+  },
+  "empathic-pain-task-after-meditation-training": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006243"
+   },
+   "size_bytes": 26637390553,
+   "size_note": "OpenNeuro ds006243 v1.1.2",
+   "link": "https://openneuro.org/datasets/ds006243"
+  },
+  "paingen-placebo-fmri-study": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004746"
+   },
+   "size_bytes": 448861396335,
+   "size_note": "OpenNeuro ds004746 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds004746"
+  },
+  "infant-freesurfer-test-subject-cnybch": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004776"
+   },
+   "size_bytes": 5761944,
+   "size_note": "OpenNeuro ds004776 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds004776"
+  },
+  "mother-of-unification-studies-mous": {},
+  "province-of-ontario-neurodevelopmental-network-pond-dataset": {},
+  "baby-open-brains-bobs-repository": {},
+  "nih-pediatric-mri-data-repository-pedsmri": {},
+  "longitudinal-brain-correlates-of-multisensory-lexical-proces": {},
+  "a-low-field-mri-dataset-for-spatiotemporal-analysis-of-devel": {},
+  "adhd-200-sample-dataset": {},
+  "prisma-precision-functional-imaging-dataset-of-autistic-and-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds007182"
+   },
+   "size_bytes": 157091571829,
+   "size_note": "OpenNeuro ds007182 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds007182"
+  },
+  "abide-1-autism-brain-imaging-data-exchange": {},
+  "abide-2": {},
+  "moral-judgments-of-intentional-and-accidental-moral-violatio": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000212"
+   },
+   "size_bytes": 8873086340,
+   "size_note": "OpenNeuro ds000212 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds000212"
+  },
+  "response-inhibition-and-selective-attention-in-adults-and-ch": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003500"
+   },
+   "size_bytes": 5730270659,
+   "size_note": "OpenNeuro ds003500 v1.2.0",
+   "link": "https://openneuro.org/datasets/ds003500"
+  },
+  "working-memory-and-reward-in-children-with-and-without-atten": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds002424"
+   },
+   "size_bytes": 43436313412,
+   "size_note": "OpenNeuro ds002424 v1.2.0",
+   "link": "https://openneuro.org/datasets/ds002424"
+  },
+  "contrast-response-functions-crf": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds002522"
+   },
+   "size_bytes": 5234849240,
+   "size_note": "OpenNeuro ds002522 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds002522"
+  },
+  "biomarker-research-in-adhd-the-impact-of-nutrition-brain-fun": {},
+  "a-longitudinal-mri-study-of-infants-at-risk-for-autism": {},
+  "biological-and-information-processing-mechanisms-underlying-": {},
+  "adolescents-with-autism-show-typical-fmri-repetition-suppres": {},
+  "biomarkers-of-autism-at-12-months-from-brain-overgrowth-to-g": {},
+  "dhcp-developing-human-connectome-project-neonatal-and-fetal-": {},
+  "abcd-study-adolescent-brain-cognitive-development": {},
+  "baby-connectome-project-bcp": {},
+  "hcp-d-lifespan-human-connectome-project-in-development": {},
+  "calgary-preschool-mri-dataset": {},
+  "feta-fetal-tissue-annotation-and-segmentation-dataset-and-ch": {},
+  "iseg-2017-six-month-old-infant-brain-mri-segmentation-challe": {},
+  "neobrains12-neonatal-brain-segmentation-challenge": {},
+  "eu-aims-aims-2-trials-longitudinal-european-autism-project-l": {},
+  "functional-and-structural-differences-in-adults-with-dyslexi": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005577"
+   },
+   "size_bytes": 46012615890,
+   "size_note": "OpenNeuro ds005577 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005577"
+  },
+  "morphological-awareness-in-readers-with-and-without-dyslexia": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006636"
+   },
+   "size_bytes": 62204759377,
+   "size_note": "OpenNeuro ds006636 v1.4.0",
+   "link": "https://openneuro.org/datasets/ds006636"
+  },
+  "reading-related-functional-activity-in-children-with-isolate": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003126"
+   },
+   "size_bytes": 4122121592,
+   "size_note": "OpenNeuro ds003126 v1.4.0",
+   "link": "https://openneuro.org/datasets/ds003126"
+  },
+  "fetal-resting-state-fmri": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003090"
+   },
+   "size_bytes": 212427934,
+   "size_note": "OpenNeuro ds003090 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds003090"
+  },
+  "adhd-dualcontrol-dataset-cued-stop-signal-task-fmri": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005899"
+   },
+   "size_bytes": 42761284659,
+   "size_note": "OpenNeuro ds005899 v1.0.2",
+   "link": "https://openneuro.org/datasets/ds005899"
+  },
+  "ping-pediatric-imaging-neurocognition-and-genetics": {},
+  "schizconnect": {},
+  "srpbs-multidisorder-mri-dataset-srpbs-1600": {},
+  "srpbs-multidisorder-mri-dataset-srpbs-open": {},
+  "alzheimer-s-disease-versus-bipolar-disorder-versus-health-co-faa3e2": {
+   "downloader": {
+    "type": "zenodo",
+    "arg": "3935636"
+   },
+   "size_bytes": 16299855376,
+   "file_count": 7
+  },
+  "data-from-common-gray-and-white-matter-abnormalities-in-schi": {},
+  "the-brain-minds-3d-human-brain-image-dataset": {},
+  "candi-share-schizophrenia-bulletin-2008-cs-schizbull08": {},
+  "neural-processing-of-emotional-musical-and-nonmusical-stimul": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000171"
+   },
+   "size_bytes": 7438131579,
+   "size_note": "OpenNeuro ds000171 v00001",
+   "link": "https://openneuro.org/datasets/ds000171"
+  },
+  "depression-treatment-by-medial-prefrontal-real-time-fmri-neu": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003770"
+   },
+   "size_bytes": 14943129199,
+   "size_note": "OpenNeuro ds003770 v1.2.1",
+   "link": "https://openneuro.org/datasets/ds003770"
+  },
+  "resting-state-with-closed-eyes-for-patients-with-depression-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds002748"
+   },
+   "size_bytes": 2442601928,
+   "size_note": "OpenNeuro ds002748 v1.0.5",
+   "link": "https://openneuro.org/datasets/ds002748"
+  },
+  "two-sessions-of-resting-state-with-closed-eyes-for-patients-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003007"
+   },
+   "size_bytes": 1925949548,
+   "size_note": "OpenNeuro ds003007 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds003007"
+  },
+  "cortical-myelin-measured-by-the-t1w-t2w-ratio-in-individuals": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003653"
+   },
+   "size_bytes": 4743704343,
+   "size_note": "OpenNeuro ds003653 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds003653"
+  },
+  "the-center-for-biomedical-research-excellence-cobre": {},
+  "ucla-consortium-for-neuropsychiatric-phenomics-la5c-study": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000030"
+   },
+   "size_bytes": 85127263296,
+   "size_note": "OpenNeuro ds000030 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds000030"
+  },
+  "philadelphia-neurodevelopmental-cohort-pnc": {},
+  "imagen": {},
+  "transdiagnostic-connectome-project-tcp": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005237"
+   },
+   "size_bytes": 1003057042537,
+   "size_note": "OpenNeuro ds005237 v1.1.3",
+   "link": "https://openneuro.org/datasets/ds005237"
+  },
+  "the-function-biomedical-informatics-research-network-data-re": {},
+  "the-mcic-collection": {},
+  "nusdast-northwestern-university-schizophrenia-data-and-softw": {},
+  "bd2-integrated-network-longitudinal-cohort-study-first-publi": {},
+  "healthy-brain-network-hbn-biobank": {},
+  "banda-boston-adolescent-neuroimaging-of-depression-and-anxie": {},
+  "nki-rockland-sample-longitudinal-discovery-of-brain-developm": {},
+  "rest-meta-mdd-resting-state-fmri-consortium-of-major-depress": {},
+  "hcp-ep-human-connectome-project-for-early-psychosis": {},
+  "b-snip-bipolar-schizophrenia-network-on-intermediate-phenoty": {},
+  "amp-scz-accelerating-medicines-partnership-schizophrenia": {},
+  "napls-3-north-american-prodrome-longitudinal-study-3": {},
+  "embarc-establishing-moderators-and-biosignatures-of-antidepr": {},
+  "working-memory-in-healthy-and-schizophrenic-individuals": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000115"
+   },
+   "size_bytes": 9110414267,
+   "size_note": "OpenNeuro ds000115 v00001",
+   "link": "https://openneuro.org/datasets/ds000115"
+  },
+  "rule-learning-in-adolescents-at-clinical-high-risk-for-psych": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds001371"
+   },
+   "size_bytes": 65924788426,
+   "size_note": "OpenNeuro ds001371 v1.1.1",
+   "link": "https://openneuro.org/datasets/ds001371"
+  },
+  "resting-state-fmri-comorbidity-of-smoking-and-schizophrenia": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds001461"
+   },
+   "size_bytes": 2394770666,
+   "size_note": "OpenNeuro ds001461 v1.0.3",
+   "link": "https://openneuro.org/datasets/ds001461"
+  },
+  "brain-correlates-of-speech-perception-in-schizophrenia-with-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004302"
+   },
+   "size_bytes": 9669714188,
+   "size_note": "OpenNeuro ds004302 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds004302"
+  },
+  "the-neural-basis-of-visual-shape-completion-in-schizophrenia": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005073"
+   },
+   "size_bytes": 28195666947,
+   "size_note": "OpenNeuro ds005073 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds005073"
+  },
+  "nimh-cat-d-characterization-and-treatment-of-adolescent-depr": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004627"
+   },
+   "size_bytes": 94056226052,
+   "size_note": "OpenNeuro ds004627 v1.1.1",
+   "link": "https://openneuro.org/datasets/ds004627"
+  },
+  "nimh-ketamine-mechanism-of-action-study": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds005917"
+   },
+   "size_bytes": 76138694053,
+   "size_note": "OpenNeuro ds005917 v1.1.0",
+   "link": "https://openneuro.org/datasets/ds005917"
+  },
+  "resting-state-and-task-functional-connectivity-in-major-depr": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006731"
+   },
+   "size_bytes": 13715852016,
+   "size_note": "OpenNeuro ds006731 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds006731"
+  },
+  "individualized-fmri-guided-rtms-with-self-system-therapy-in-": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds008064"
+   },
+   "size_bytes": 27723084329,
+   "size_note": "OpenNeuro ds008064 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds008064"
+  },
+  "preschool-anxiety-disorders": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000144"
+   },
+   "size_bytes": 2508244314,
+   "size_note": "OpenNeuro ds000144 v00002",
+   "link": "https://openneuro.org/datasets/ds000144"
+  },
+  "reduced-threat-related-neural-efficiency-a-possible-biomarke": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006303"
+   },
+   "size_bytes": 59562671323,
+   "size_note": "OpenNeuro ds006303 v1.1.2",
+   "link": "https://openneuro.org/datasets/ds006303"
+  },
+  "functional-connectivity-and-anatomy-as-predictors-of-cbt-out": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006045"
+   },
+   "size_bytes": 21294385462,
+   "size_note": "OpenNeuro ds006045 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds006045"
+  },
+  "nimh-gamified-attention-bias-modification-training-to-augmen": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds006577"
+   },
+   "size_bytes": 26735649166,
+   "size_note": "OpenNeuro ds006577 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds006577"
+  },
+  "ocd-structural-and-functional-connectivity-study": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds008110"
+   },
+   "size_bytes": 15622564666,
+   "size_note": "OpenNeuro ds008110 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds008110"
+  },
+  "sudmex-conn-mexican-dataset-of-cocaine-use-disorder-patients": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003346"
+   },
+   "size_bytes": 14147729622,
+   "size_note": "OpenNeuro ds003346 v1.1.3",
+   "link": "https://openneuro.org/datasets/ds003346"
+  },
+  "white-matter-deficits-in-cocaine-use-disorder": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003599"
+   },
+   "size_bytes": 42593962660,
+   "size_note": "OpenNeuro ds003599 v1.0.0",
+   "link": "https://openneuro.org/datasets/ds003599"
+  },
+  "t1-weighted-structural-mri-of-cannabis-users-at-baseline-and": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds000174"
+   },
+   "size_bytes": 564756018,
+   "size_note": "OpenNeuro ds000174 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds000174"
+  },
+  "two-week-running-intervention-depressive-symptoms-and-hippoc": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds003799"
+   },
+   "size_bytes": 2188684952,
+   "size_note": "OpenNeuro ds003799 v2.0.0",
+   "link": "https://openneuro.org/datasets/ds003799"
+  },
+  "seven-week-running-intervention-hippocampal-volume-and-depre": {
+   "downloader": {
+    "type": "openneuro",
+    "arg": "ds004937"
+   },
+   "size_bytes": 1032281024,
+   "size_note": "OpenNeuro ds004937 v1.0.1",
+   "link": "https://openneuro.org/datasets/ds004937"
+  }
+ }
+}
